@@ -7,7 +7,7 @@ angular.module('foodApp', [])
 		//define variables and objects on this
 		//this lets them be available to our views
 		//define basic variable
-		vm.message = "Hey! Check out how I look!";
+		vm.message = "Hey! This is message!";
 
 		//define list of items
 		vm.computers = [
@@ -15,4 +15,23 @@ angular.module('foodApp', [])
 			{ name: 'Yoga 2 Pro', color: 'Gray', nerdness: 6 },
 			{ name: 'ChromeBook', color: 'Black', nerdness: 5 }	
 		];
+
+		//object with info from form
+		vm.computerData = {};
+		
+		vm.addComputer = function(){
+			
+			//add computer
+			vm.computers.push({
+				name: vm.computerData.name,
+				color: vm.computerData.color,
+				nerdness: vm.computerData.nerdness
+			});
+
+			//clear object/form
+			vm.computerData = {};
+		};
+
+
+
 });

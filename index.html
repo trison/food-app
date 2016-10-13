@@ -17,7 +17,7 @@
 		<!-- display message -->
 		<h2>This is my message</h2>
 		{{ main.message }}
-
+	
 		<!-- display list (ng-repeat)-->
 		<h2>Here is da list:</h2>
 		<table class="table table-bordered">
@@ -42,6 +42,18 @@
 			<label>Message</label>
 			<input type="text" class="form-control" ng-model="main.message">
 		</div>
+		
+		<!-- form to add computer to list-->
+		<form class="form-inline" ng-submit="main.addComputer()">
+			<input type="text" class="form-control" placeholder="Macbook" ng-model="main.computerData.name">
+			<input type="text" class="form-control" placeholder="Silver" ng-model="
+main.computerData.color">
+			<input type="text" class="form-control" placeholder="8" ng-model="
+main.computerData.nerdness">
+			<button type="submit" class="btn btn-success">Add</button>
+
+		</form>
+
 	</div>
 		
 </body>
