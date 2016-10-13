@@ -1,5 +1,6 @@
 //name app
-angular.module('foodApp', [])
+angular.module('foodApp', ['routerRoutes'])
+	//controller for entire site
 	.controller('mainController', function(){
 		//bind to view model
 		var vm = this;
@@ -7,7 +8,7 @@ angular.module('foodApp', [])
 		//define variables and objects on this
 		//this lets them be available to our views
 		//define basic variable
-		vm.message = "Hey! This is message!";
+		vm.message = "Ayo! This is message!";
 
 		//define list of items
 		vm.computers = [
@@ -31,7 +32,20 @@ angular.module('foodApp', [])
 			//clear object/form
 			vm.computerData = {};
 		};
-
-
-
-});
+	})
+	//home page specific controller
+	.controller('homeController', function(){
+		var vm = this;
+		vm.message = 'HOME PAGE!!';
+	})
+	//about page controller
+	.controller('aboutController', function(){
+		var vm = this;
+		vm.message = "ABOUT PAGE!!";
+	})
+	//contact page controller
+	.controller('contactController', function(){
+		var vm = this;
+		vm.message = 'CONTACT PAGE!!';
+	})
+;

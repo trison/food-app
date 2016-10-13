@@ -30,11 +30,13 @@ app.use(function(req, res, next){
 //log requests to console
 app.use(morgan('dev'));
 
+//set public folder to serve public assets
+app.use(express.static(__dirname + '/public'));
+
 // ==== ROUTES ====
-//basic route for homepage
-app.get('/', function(req, res) {
-	res.send('HOME PAGE');
-	//res.sendFile(path.join(__dirname+'/public/index.html'));
+//set up route to index.html file whenever get a request to server (* is wildcard)
+app.get('*', function(req, res) {
+	res.sendFile(path.join(__dirname+'/public/index.html'));
 });
 
 //get instance of express router
@@ -120,7 +122,7 @@ apiRouter.use(function(req, res, next) {
 
 
 
-//test route, at GET http://localhost:9090/api
+//test route, at GET http://localhost:8080/api
 apiRouter.get('/', function(req, res){
 	res.json({ message: 'hooray! welcome to the api!' });
 });
