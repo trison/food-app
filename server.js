@@ -36,7 +36,7 @@ app.use(express.static(__dirname + '/public'));
 // ==== ROUTES ====
 //set up route to index.html file whenever get a request to server (* is wildcard)
 app.get('*', function(req, res) {
-	res.sendFile(path.join(__dirname+'/public/index.html'));
+	res.sendFile(path.join(__dirname+'/public/angular/views/index.html'));
 });
 
 //get instance of express router

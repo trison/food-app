@@ -5,19 +5,19 @@ angular.module('routerRoutes', ['ngRoute'])
 		$routeProvider
 			//route for home page
 			.when('/', {
-				templateUrl: 'views/pages/home.html',
+				templateUrl: 'angular/views/pages/home.html',
 				controller: 'homeController',
 				controllerAs: 'home'
 			})
 			//route for about page
 			.when('/about', {
-				templateUrl: 'views/pages/about.html',
+				templateUrl: 'angular/views/pages/about.html',
 				controller: 'aboutController',
 				controllerAs: 'about'
 			})
 			//route for about page
 			.when('/contact', {
-				templateUrl: 'views/pages/contact.html',
+				templateUrl: 'angular/views/pages/contact.html',
 				controller: 'contactController',
 				controllerAs: 'contact'
 			});
