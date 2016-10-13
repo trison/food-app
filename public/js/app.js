@@ -1,5 +1,5 @@
 //name app
-angular.module('foodApp', ['routerRoutes'])
+angular.module('foodApp', ['routerRoutes', 'ngAnimate'])
 	//controller for entire site
 	.controller('mainController', function(){
 		//bind to view model
