@@ -33,6 +33,8 @@ angular.module('foodApp', ['routerRoutes', 'ngAnimate'])
 			vm.computerData = {};
 		};
 	})
+
+
 	//home page specific controller
 	.controller('homeController', function(){
 		var vm = this;
