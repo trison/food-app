@@ -1,5 +1,5 @@
 //inject ngRoute for routing
-angular.module('routerRoutes', ['ngRoute'])
+angular.module('app.routes', ['ngRoute'])
 	//configure routes
 	.config(function($routeProvider, $locationProvider){
 		$routeProvider
@@ -8,6 +8,12 @@ angular.module('routerRoutes', ['ngRoute'])
 				templateUrl: 'angular/views/pages/home.html',
 				controller: 'homeController',
 				controllerAs: 'home'
+			})
+			//route for login page
+			.when('/login', {
+				templateUrl: 'angular/views/pages/login.html',
+				controller: 'mainController',
+				controllerAs: 'login'
 			})
 			//route for about page
 			.when('/about', {

@@ -1,13 +1,55 @@
 //name app
-angular.module('foodApp', ['routerRoutes', 'ngAnimate'])
+angular.module('foodApp', [
+	'ngAnimate',
+	'app.routes',
+	'authService',
+	'userService',
+	'mainCtrl',
+	'userCtrl'
+	])
 	//controller for entire site
-	.controller('mainController', function(){
-		//bind to view model
+	.controller('mainController', function($rootScope, $location, Auth){
 		var vm = this;
 
-		//define variables and objects on this
-		//this lets them be available to our views
-		//define basic variable
+		// get info if person is logged in
+		vm.loggedIn = Auth.isLoggedIn();
+
+		//check to see if a user is logged in on every request
+		$rootScope.$on('$routeChangeStart', function(){
+			vm.loggedIn = Auth.isLoggedIn();
+
+			//get user info on route change
+			Auth.getUser().success(function(data){
+				vm.user = data;
+			});
+		});
+
+		//handle login form
+		vm.doLogin = function(){
+			vm.processing = true;
+			vm.error = '';
+
+			//call Auth.login()
+			Auth.login(vm.loginData.username, vm.loginData.password)
+				.success(function(data){
+					vm.processsing = false;
+
+					//if user successfully logs in, redirect to users page
+					if (data.success)	
+						$location.path('/users');
+					else
+						vm.error = data.message;
+				});
+		};
+
+		//handle logging out
+		vm.doLogout = function(){
+			Auth.logout();
+			//reset all user info
+			vm.user = {};
+			$location.path('/login');
+		};
+
 		vm.message = "Ayo! This is message!";
 
 		//define list of items
@@ -32,8 +74,7 @@ angular.module('foodApp', ['routerRoutes', 'ngAnimate'])
 			//clear object/form
 			vm.computerData = {};
 		};
-	})
-
+	})	
 
 	//home page specific controller
 	.controller('homeController', function(){
