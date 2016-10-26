@@ -9,7 +9,7 @@ angular.module('foodApp', [
 	])
 	// ********************************************
 	//	MAIN CONTROLLER
-	.controller('mainController', function($rootScope, $location, Auth){
+	.controller('mainController', function($rootScope, $location, $route, Auth){
 		var vm = this;
 
 		// get info if person is logged in
@@ -52,6 +52,10 @@ angular.module('foodApp', [
 			$location.path('/login');
 		};
 
+		vm.reloadRoute = function(){
+			$route.reload();
+		};
+
 		vm.message = "Ayo! This is message!";
 
 		//define list of items
@@ -77,6 +81,63 @@ angular.module('foodApp', [
 			vm.computerData = {};
 		};
 	})	
+	// ********************************************
+	// USER CONTROLLER
+	.controller('userController', function(User) {
+		var vm = this;
+
+		// processing variable to show loading
+		vm.processing = true;
+
+		// get users on page load
+		User.all().success(function(data) {
+		    // remove processing var when users come
+			vm.processing = false;
+
+			// bind the users to vm.users
+			vm.users = data;
+		});
+
+		vm.deleteUser = function(id) {
+			vm.processing = true;
+			
+			User.delete(id)
+				.success(function(data) {
+				// get all users to update the table
+				// you can also set up your api
+				// to return the list of users with the delete call User.all()
+				User.all()
+					.success(function(data){
+						vm.processing = false;
+						vm.users = data;
+				});
+			});
+		};
+	})
+	// ********************************************
+	// USER CREATE CONTROLLER
+	.controller('userCreateController', function(User) {
+		var vm = this;
+
+		//var to hide/show elements, differentiate between create or edit page
+		vm.type = 'create';
+
+		//create user
+		vm.saveUser = function(){
+			vm.processing = true;
+			vm.message = '';
+
+			User.create(vm.userData)
+				.success(function(data){
+					vm.processing = false;
+
+					//clear form after success
+					vm.userData = {};
+					vm.message = data.message;
+				});
+		};
+
+	})
 
 	// ********************************************
 	// HOME CONTROLLER
