@@ -1,5 +1,9 @@
 body {
-	padding-top: 50px;
+	background: url(../../img/login-bg.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 header .navbar{
@@ -14,20 +18,28 @@ main {
 	position: relative;
 }
 
-.ng-enter, .ng-leave{
+.jumbotron{
+	background-color: rgba(195, 195, 195, 0.8);
+}
+
+.navbar-nav{
+	/*background-color: red;*/
+}
+
+/*.ng-enter, .ng-leave{
 	width: 100%;
 	position: absolute;
 }
 .ng-enter{
-	-webkit-animation: zoomInDown 1.2s both ease-in;
-	-moz-animation: zoomInDown 1.2s both ease-in;
-	animation: zoomInDown 1.2s both ease-in;
+	-webkit-animation: fadeIn 0.25s both ease-in;
+	-moz-animation: fadeIn 0.25s both ease-in;
+	animation: fadeIn 0.25s both ease-in;
 }
 .ng-leave{
-	-webkit-animation:zoomOutDown 0.5s both ease-in;
-	-moz-animation:zoomOutDown 0.5s both ease-in;
-	animation:zoomOutDown 0.5s both ease-in;
-}
+	-webkit-animation: fadeOut 0.25s both ease-in;
+	-moz-animation: fadeOut 0.25s both ease-in;
+	animation: fadeOut 0.25s both ease-in;
+}*/
 
 /* ANIMATIONS ====================== */ 
 .spinner {

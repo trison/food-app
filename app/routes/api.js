@@ -53,7 +53,7 @@ module.exports = function(app, express) {
     });
   });
 
-  //middleware for requests
+  // ************** MIDDLEWARE for requests
   apiRouter.use(function(req, res, next) {
     //do logging
     console.log('Somebody just came to the app!');
@@ -62,7 +62,7 @@ module.exports = function(app, express) {
     
     //ROUTE MIDDLEWARE TO VERIFY TOKEN
     //check header or URL or POST parameters for token
-    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
     
     //decode token
     if(token){
@@ -88,11 +88,9 @@ module.exports = function(app, express) {
     }
   });
 
-
-
   //test route, at GET http://localhost:8080/api
   apiRouter.get('/', function(req, res){
-    res.json({ message: 'hooray! welcome to the api!' });
+    res.json({ message: 'Hooray! Welcome to the API!' });
   });
 
   //routes that end in /users
@@ -169,9 +167,11 @@ module.exports = function(app, express) {
           res.json({ message: 'Succesfully deleted' });
         });
     });
+
     //api endpoint to get user info
     apiRouter.get('/me', function(req, res){
       res.send(req.decoded);
     });
+
     return apiRouter;
   };

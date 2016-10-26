@@ -31,80 +31,26 @@
 <body ng-app="foodApp" ng-controller="mainController as main">
 	<!-- HEADER AND NAVBAR -->
 	<header>
-		<div class="navbar navbar-inverse" ng-if="!main.loggedIn">
+		<div class="navbar navbar-inverse" ng-if="main.loggedIn">
 			<div class="container">
 				<div class="navbar-header">
-					<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span> User CRM</a>
+					<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span> Home </a>
 				</div>
 				<ul class="nav navbar-nav">
 					<li><a href="/users"><span class="glyphicon glyphicon-user"></span> Users</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
-					<li ng-if="main.loggedIn" class="navbar-text">Hello {{ main.user.name }}!</li>
+					<li ng-if="main.loggedIn" class="navbar-text">Hello {{ }}!</li>
 					<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
 				</ul>
 			</div>
 		</div>
-
-		<nav class="navbar navbar-default container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/">ROUTING EXAMPLE</a>
-			</div>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="/about"><i class="fa fa-shield"></i>About</a></li>
-				<li><a href="/contact"><i class="fa fa-comment"></i>Contact</a></li>
-			</ul>
-		</nav>
-
 	</header>
 
 	<main class="container" id="content-views">	
 		<div ng-view></div>
 	</main>
-
-	<div class="jumbotron">
-		<!-- display message -->
-		<h2>This is my message</h2>
-		{{ main.message }}
-	
-		<!-- display list (ng-repeat)-->
-		<h2>Here is da list:</h2>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<td>Name</td>
-					<td>Color</td>
-					<td>Nerd Level</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="computer in main.computers">
-					<td>{{ computer.name }}</td>
-					<td>{{ computer.color }}</td>
-					<td>{{ computer.nerdness }}</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<!-- form to update message (ng-model)-->
-		<div class="form-group">
-			<label>Message</label>
-			<input type="text" class="form-control" ng-model="main.message">
-		</div>
-		
-		<!-- form to add computer to list-->
-		<form class="form-inline" ng-submit="main.addComputer()">
-			<input type="text" class="form-control" placeholder="Macbook" ng-model="main.computerData.name">
-			<input type="text" class="form-control" placeholder="Silver" ng-model="
-main.computerData.color">
-			<input type="text" class="form-control" placeholder="8" ng-model="
-main.computerData.nerdness">
-			<button type="submit" class="btn btn-success">Add</button>
-		</form>
-	</div>
 
 </body>
 </html>

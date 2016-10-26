@@ -7,7 +7,8 @@ angular.module('foodApp', [
 	'mainCtrl',
 	'userCtrl'
 	])
-	//controller for entire site
+	// ********************************************
+	//	MAIN CONTROLLER
 	.controller('mainController', function($rootScope, $location, Auth){
 		var vm = this;
 
@@ -19,8 +20,9 @@ angular.module('foodApp', [
 			vm.loggedIn = Auth.isLoggedIn();
 
 			//get user info on route change
-			Auth.getUser().success(function(data){
-				vm.user = data;
+			Auth.getUser()
+				.then(function(data){
+					vm.user = data.data;
 			});
 		});
 
@@ -76,17 +78,20 @@ angular.module('foodApp', [
 		};
 	})	
 
-	//home page specific controller
+	// ********************************************
+	// HOME CONTROLLER
 	.controller('homeController', function(){
 		var vm = this;
 		vm.message = 'HOME PAGE!!';
 	})
-	//about page controller
+	// ********************************************
+	// ABOUT CONTROLLER
 	.controller('aboutController', function(){
 		var vm = this;
 		vm.message = "ABOUT PAGE!!";
 	})
-	//contact page controller
+	// ********************************************
+	// CONTACT CONTROLLER
 	.controller('contactController', function(){
 		var vm = this;
 		vm.message = 'CONTACT PAGE!!';
