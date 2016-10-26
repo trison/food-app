@@ -96,4 +96,9 @@ angular.module('foodApp', [
 		var vm = this;
 		vm.message = 'CONTACT PAGE!!';
 	})
+	.config(function($httpProvider){
+
+        $httpProvider.interceptors.push('AuthInterceptor');
+
+    });
 ;
