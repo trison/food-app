@@ -1,6 +1,5 @@
 <div class="page-header">
-	<h1 ng-if="user.type == 'create'">Create User</h1>
-	<h1 ng-if="user.type == 'edit'">Edit User</h1>
+	<h1>Register</h1>
 </div>
 
 <form class="form-horizontal jumbotron" ng-submit="user.saveUser()">
@@ -27,10 +26,9 @@
 	</div>
 	
 	<div class="form-group">
-	<div class="col-sm-offset-2 col-sm-6">
-		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'create'">Create User</button>
-		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'edit'">Update User</button>
-	</div>
+		<div class="col-sm-offset-2 col-sm-6">
+			<button type="submit" class="btn btn-success btn-lg btn-block">Register</button>
+		</div>
 	</div>
 
 </form>

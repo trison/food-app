@@ -17,6 +17,13 @@ main {
 tr{
 	background-color: rgba(190, 190, 190, 0.7);
 }
+.hello{
+	font-size: 3em;
+	font-weight: bold;
+	color: white ;
+	text-align: center;
+	margin-bottom: 2%;
+}
 
 #content-views {
 	position: relative;
