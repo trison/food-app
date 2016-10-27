@@ -12,7 +12,7 @@ module.exports = function(app, express) {
 
   //route for authenticatin users
   apiRouter.post('/authenticate', function(req, res) {
-    //find user. select username and passowrd explicitly
+    //find user. select username and password explicitly
     User.findOne({ username: req.body.username })
     .select('name username password').exec(function(err, user) {
       if(err) throw err;

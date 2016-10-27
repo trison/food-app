@@ -38,6 +38,11 @@ angular.module('app.routes', ['ngRoute'])
 			  controller: 'userEditController',
 			  controllerAs: 'user'
 			})
+			.when('/profile', {
+			  templateUrl: 'angular/views/pages/users/profile.html',
+			  controller: 'profileController',
+			  controllerAs: 'profile'
+			})
 			;
 		//set app to have pretty URLS
 		$locationProvider.html5Mode(true);

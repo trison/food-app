@@ -14,6 +14,10 @@ main {
 	padding-top: 30px;
 }
 
+tr{
+	background-color: rgba(190, 190, 190, 0.7);
+}
+
 #content-views {
 	position: relative;
 }

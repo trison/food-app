@@ -38,7 +38,7 @@ angular.module('foodApp', [
 
 					//if user successfully logs in, redirect to users page
 					if (data.success)	
-						$location.path('/users');
+						$location.path('/profile');
 					else
 						vm.error = data.message;
 				});
@@ -160,6 +160,17 @@ angular.module('foodApp', [
 					vm.message = data.message;
 				});
 		};
+	})
+
+	// ********************************************
+	// PROFILE CONTROLLER
+	.controller('profileController', function($routeParams, $route, Auth, User){
+		var vm = this;
+
+		Auth.getUser()
+			.then(function(data){
+				vm.user = data.data;
+		});	
 	})
 
 	// ********************************************

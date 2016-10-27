@@ -1,4 +1,4 @@
-FASTY FOOD APP
+TASTY FOOD APP
 =======
  
 Connect with restaurants to get food delivered to your door.
