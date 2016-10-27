@@ -14,7 +14,7 @@ module.exports = function(app, express) {
   apiRouter.post('/authenticate', function(req, res) {
     //find user. select username and password explicitly
     User.findOne({ username: req.body.username })
-    .select('name username password').exec(function(err, user) {
+    .select('_id name email username password').exec(function(err, user) {
       if(err) throw err;
 
       //no user with that username found
@@ -35,8 +35,10 @@ module.exports = function(app, express) {
           //if user found and password right, create token
           var token = jwt.sign(
             {
+              _id: user._id,
               name: user.name,
-              username: user.username
+              username: user.username,
+              email: user.email
             },
             superSecret, {
               expiresIn: 1440 //24hrs
@@ -52,6 +54,36 @@ module.exports = function(app, express) {
       }
     });
   });
+
+ //test route, at GET http://localhost:8080/api
+  apiRouter.get('/', function(req, res){
+    res.json({ message: 'Hooray! Welcome to the API!' });
+  });
+
+  //POST user at localhost:8080/api/users
+  apiRouter.post('/users/', function(req, res) {
+    //create new instance of User model
+    var user = new User();
+
+    //set users info (from request)
+    user.name = req.body.name;
+    user.email = req.body.email;
+    user.username = req.body.username;
+    user.password = req.body.password;
+
+    //save user and check for errors
+    user.save(function(err) {
+      if(err) {
+        //duplicate entry
+        if(err.code == 11000)
+          return res.json({ success: false, message: 'A user with that username already exists. '});
+        else
+          return res.send(err);
+      }
+      res.json({ message: 'User created!' });
+    });
+  })
+
 
   // ************** MIDDLEWARE for requests
   apiRouter.use(function(req, res, next) {
@@ -88,35 +120,8 @@ module.exports = function(app, express) {
     }
   });
 
-  //test route, at GET http://localhost:8080/api
-  apiRouter.get('/', function(req, res){
-    res.json({ message: 'Hooray! Welcome to the API!' });
-  });
-
   //routes that end in /users
   apiRouter.route('/users')
-    //POST user at localhost:8080/api/users
-    .post(function(req, res) {
-      //create new instance of User model
-      var user = new User();
-      
-      //set users info (from request)
-      user.name = req.body.name;
-      user.username = req.body.username;
-      user.password = req.body.password;
-
-      //save user and check for errors
-      user.save(function(err) {
-        if(err) {
-          //duplicate entry
-          if(err.code == 11000)
-            return res.json({ success: false, message: 'A user with that username already exists. '});
-          else
-            return res.send(err);
-        }
-        res.json({ message: 'User created!' });
-      });
-    })
     //GET users at /api/users
     .get(function(req, res){
       User.find(function(err, users) {
@@ -146,6 +151,7 @@ module.exports = function(app, express) {
       
         //update only if new
         if (req.body.name) user.name = req.body.name;
+        if (req.body.email) user.email = req.body.email;
         if (req.body.username) user.username = req.body.username;
         if(req.body.password) user.password = req.body.password;
 
@@ -170,7 +176,7 @@ module.exports = function(app, express) {
 
     //api endpoint to get user info
     apiRouter.get('/me', function(req, res){
-      res.send(req.decoded);
+     res.send(req.decoded);
     });
 
     return apiRouter;

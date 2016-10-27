@@ -34,7 +34,7 @@
 		<div class="navbar navbar-inverse" ng-if="main.loggedIn">
 			<div class="container">
 				<div class="navbar-header">
-					<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span> Home </a>
+					<a href="/home" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span> Home </a>
 				</div>
 				<ul class="nav navbar-nav">
 					<li><a href="/users"><span class="glyphicon glyphicon-user"></span> Users</a></li>
@@ -47,9 +47,8 @@
 			</div>
 		</div>
 	</header>
-
+	<div class="hello">Hello {{ main.user.username }}!</div>
 	<main class="container" id="content-views">	
-		<div ng-if="main.loggedIn" class="hello">Hello {{ main.user.username }}!</div>
 		<div ng-view></div>
 	</main>
 

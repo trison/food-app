@@ -136,7 +136,6 @@ angular.module('foodApp', [
 					vm.message = data.message;
 				});
 		};
-
 	})
 	// ********************************************
 	// USER EDIT CONTROLLER
@@ -167,10 +166,10 @@ angular.module('foodApp', [
 	.controller('profileController', function($routeParams, $route, Auth, User){
 		var vm = this;
 
-		Auth.getUser()
-			.then(function(data){
-				vm.user = data.data;
-		});	
+		 Auth.getUser()
+		 	.then(function(data){
+		 		vm.user = data.data;
+		 });	
 	})
 
 	// ********************************************
@@ -191,9 +190,9 @@ angular.module('foodApp', [
 		var vm = this;
 		vm.message = 'CONTACT PAGE!!';
 	})
+	
 	.config(function($httpProvider){
 
         $httpProvider.interceptors.push('AuthInterceptor');
-
     });
 ;

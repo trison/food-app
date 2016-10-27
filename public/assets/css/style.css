@@ -17,12 +17,16 @@ main {
 tr{
 	background-color: rgba(190, 190, 190, 0.7);
 }
+.page-header{
+	color: white;
+}
 .hello{
-	font-size: 3em;
+	font-size: 2em;
 	font-weight: bold;
-	color: white ;
+	color: white;
+	padding: 15px 0 10px 0;
+	line-height: 20px;
 	text-align: center;
-	margin-bottom: 2%;
 }
 
 #content-views {

@@ -7,10 +7,13 @@ angular.module('userService', [])
 		userFactory.get = function(id) {
 			return $http.get('/api/users/'+id);
 		};
+		//GET you!
+		userFactory.me = function() {
+			return $http.get('/api/me/');
+		};
 
 		//GET all users
 		userFactory.all = function(){
-			console.log("AAYYYYY");
 			return $http.get('/api/users/');
 		};
 

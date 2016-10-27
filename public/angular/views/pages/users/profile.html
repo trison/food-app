@@ -1,4 +1,23 @@
 <div class = "jumbotron">
-	Name: {{ profile.user.name }}
-	<br>Username: {{ profile.user.username }}
+
+
+	 <table class="table table-bordered table-striped">
+<!-- 		<tr>
+			<th>_id</th>
+			<td>{{ profile.user._id }}</td>
+		</tr> -->
+		<tr>
+			<th>Name</th>
+			<td>{{ profile.user.name }}</td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td>{{ profile.user.email }}</td>
+		</tr>
+		<tr>
+			<th>Username</th>
+			<td>{{ profile.user.username }}</td>
+		</tr>
+	</table>
+	<a ng-href="/users/{{ profile._id }}" class="btn btn-danger">Edit</a>
 </div>

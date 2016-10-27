@@ -16,6 +16,7 @@
 		<tr>
 			<th>_id</th>
 			<th>Name</th>
+			<th>Email</th>
 			<th>Username</th>
 			<th class="col-sm-2"></th>
 		</tr>
@@ -25,6 +26,7 @@
 		<tr ng-repeat="person in user.users">
 			<td>{{ person._id }}</td>
 			<td>{{ person.name }}</td>
+			<td>{{ person.email }}</td>
 			<td>{{ person.username }}</td>
 			<td class="col-sm-2">
 				<a ng-href="/users/{{ person._id }}" class="btn btn-danger">Edit</a>
