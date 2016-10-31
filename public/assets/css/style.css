@@ -8,18 +8,25 @@ body {
 
 header .navbar{
 	border-radius:0;
+	opacity: 0.9;
 }
 
 main {
 	padding-top: 30px;
 }
 
+.profile-page th{
+	width: 40%;
+}
+
 tr{
 	background-color: rgba(190, 190, 190, 0.7);
 }
+
 .page-header{
 	color: white;
 }
+
 .hello{
 	font-size: 2em;
 	font-weight: bold;

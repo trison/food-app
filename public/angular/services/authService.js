@@ -20,7 +20,7 @@ angular.module('authService', [])
 			});
 		};
 
-		//hangle logout
+		//handle logout
 		authFactory.logout = function(){
 			//clear token
 			AuthToken.setToken();

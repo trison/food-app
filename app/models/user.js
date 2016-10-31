@@ -1,4 +1,4 @@
-//grab the packages needed fo ruser model
+//grab the packages needed for user model
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');

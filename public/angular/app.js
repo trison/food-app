@@ -169,7 +169,7 @@ angular.module('foodApp', [
 		 Auth.getUser()
 		 	.then(function(data){
 		 		vm.user = data.data;
-		 });	
+		 });
 	})
 
 	// ********************************************
@@ -178,19 +178,21 @@ angular.module('foodApp', [
 		var vm = this;
 		vm.message = 'HOME PAGE!!';
 	})
+
 	// ********************************************
 	// ABOUT CONTROLLER
 	.controller('aboutController', function(){
 		var vm = this;
 		vm.message = "ABOUT PAGE!!";
 	})
+	
 	// ********************************************
 	// CONTACT CONTROLLER
 	.controller('contactController', function(){
 		var vm = this;
 		vm.message = 'CONTACT PAGE!!';
 	})
-	
+
 	.config(function($httpProvider){
 
         $httpProvider.interceptors.push('AuthInterceptor');

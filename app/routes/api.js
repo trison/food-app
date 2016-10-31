@@ -1,6 +1,10 @@
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
+
+var Img = require('../models/img');
 var config = require('../../config');
+
+var fs = require('fs');
 
 // super secret for creating tokens
 var superSecret = config.secret;
@@ -84,6 +88,36 @@ module.exports = function(app, express) {
     });
   })
 
+  //POST image at localhost:8080/api/img
+  apiRouter.post('/img/', function(req, res) {
+    //create new instance of Img model
+    var img = new Img();
+    var imgPath = '/Users/trison/Web/food/public/img/img.png';
+
+    //set img info (from request)
+    img.data = fs.readFileSync(imgPath);
+    console.log(img.data);
+    img.contentType = 'image/png';
+
+    //save img and check for errors
+    img.save(function(err) {
+      if(err) throw err;
+      console.error('saved img to mongo');
+      res.json({ message: 'Image posted!' });
+    });
+  })
+
+  //routes that end in /users
+  apiRouter.route('/img')
+    //GET users at /api/users
+    .get(function(req, res){
+      Img.find(function(err, imgs) {
+        if(err) res.send(err);
+        
+        //return users
+        res.json(imgs);  
+      });
+    });
 
   // ************** MIDDLEWARE for requests
   apiRouter.use(function(req, res, next) {
