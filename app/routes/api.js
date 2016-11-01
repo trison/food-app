@@ -61,7 +61,7 @@ module.exports = function(app, express) {
 
  //test route, at GET http://localhost:8080/api
   apiRouter.get('/', function(req, res){
-    res.json({ message: 'Hooray! Welcome to the API!' });
+    res.json({ message: 'Welcome to the API boiii!' });
   });
 
   //POST user at localhost:8080/api/users
@@ -74,6 +74,7 @@ module.exports = function(app, express) {
     user.email = req.body.email;
     user.username = req.body.username;
     user.password = req.body.password;
+    user.menu = req.body.menu;
 
     //save user and check for errors
     user.save(function(err) {
@@ -84,11 +85,11 @@ module.exports = function(app, express) {
         else
           return res.send(err);
       }
-      res.json({ message: 'User created!' });
+      res.json({ message: 'User created! '+ req.body });
     });
   })
 
-  //POST image at localhost:8080/api/img
+  //POST image at /api/img
   apiRouter.post('/img/', function(req, res) {
     //create new instance of Img model
     var img = new Img();
@@ -96,25 +97,28 @@ module.exports = function(app, express) {
 
     //set img info (from request)
     img.data = fs.readFileSync(imgPath);
-    console.log(img.data);
+
+    // var str = String(data);
+    // img.data = data.toString('base64');
+
     img.contentType = 'image/png';
 
     //save img and check for errors
     img.save(function(err) {
       if(err) throw err;
-      console.error('saved img to mongo');
+      console.error('saved img to mongo: '+img.data);
       res.json({ message: 'Image posted!' });
     });
   })
 
-  //routes that end in /users
+  //routes that end in /img
   apiRouter.route('/img')
-    //GET users at /api/users
+    //GET users at /api/img
     .get(function(req, res){
       Img.find(function(err, imgs) {
         if(err) res.send(err);
         
-        //return users
+        //return images
         res.json(imgs);  
       });
     });
