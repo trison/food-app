@@ -166,10 +166,16 @@ angular.module('foodApp', [
 	.controller('profileController', function($routeParams, $route, Auth, User){
 		var vm = this;
 
-		 Auth.getUser()
-		 	.then(function(data){
-		 		vm.user = data.data;
-		 });
+		vm.array2 = [
+			{"name": "1", "price":"2", "description": "damn it's really good"},
+			{"name": "2", "price":"5", "description": "yeah this one's ok"}
+		]
+		
+		Auth.getUser()
+			.then(function(data){
+				vm.user = data.data;
+				vm.a = data.data.menu;
+		});
 	})
 
 	// ********************************************

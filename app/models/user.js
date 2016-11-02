@@ -9,9 +9,9 @@ var UserSchema = new Schema({
 	email: { type: String, required: true, index: { unique: true }},
 	username: { type: String, required: true, index: { unique: true }},
 	password: { type: String, required: true, select: false },
-	menu: [
-		{ item_name: String, item_price: String }
-	]
+	// menu: [
+	// 	{ name: String, price: String, description: String }
+	// ]
 });
 
 //hash password before user is saved

@@ -1,13 +1,13 @@
 <div class="page-header">
-		<h1>Profile</h1>
-	</div>
+	<h1>Profile</h1>
+</div>
 
 <div class = "jumbotron profile-page">
 	 <table class="table table-bordered table-striped">
-<!-- 		<tr>
+		<tr>
 			<th>_id</th>
 			<td>{{ profile.user._id }}</td>
-		</tr> -->
+		</tr>
 		<tr>
 			<th>Username</th>
 			<td>{{ profile.user.username }}</td>
@@ -20,6 +20,38 @@
 			<th>Email</th>
 			<td>{{ profile.user.email }}</td>
 		</tr>
+<!-- 		<tr>
+			<th>what</th>
+			<td>{{ profile.a.name }}</td>
+		</tr> -->
 	</table>
 	<a ng-href="/users/{{ profile.user._id }}" class="btn btn-danger">Edit</a>
+</div>
+
+<div class="page-header">
+	<h1>Menu</h1>
+</div>
+
+<div class = "jumbotron profile-page">
+	 <table class="table table-bordered table-striped">
+	 	<thead>
+	 		<tr>
+		 		<td>Name</td>
+		 		<td>Price</td>
+		 		<td>Description</td>
+		 		<td>{{ profile.a}}</td>
+		 	<tr>
+	 	</thead>
+	 	<tr ng-repeat="item in profile.a">
+	 		<td>{{ item.name}}</td>
+	 		<td>{{item.price}}</td>
+	 		<td>{{item.description}}</td>
+		</tr>
+
+	 	<!-- <tr ng-repeat="item in profile.user.menu">
+	 		<td>{{ item.name}}</td>
+	 		<td>{{item.price}}</td>
+	 		<td>{{item.description}}</td>
+		</tr> -->
+	 </table>
 </div>

@@ -1,9 +1,8 @@
 var User = require('../models/user');
-var jwt = require('jsonwebtoken');
-
 var Img = require('../models/img');
+var Menu = require('../models/menu');
+var jwt = require('jsonwebtoken');
 var config = require('../../config');
-
 var fs = require('fs');
 
 // super secret for creating tokens
@@ -43,6 +42,7 @@ module.exports = function(app, express) {
               name: user.name,
               username: user.username,
               email: user.email
+              //menu: user.menu
             },
             superSecret, {
               expiresIn: 1440 //24hrs
@@ -74,7 +74,7 @@ module.exports = function(app, express) {
     user.email = req.body.email;
     user.username = req.body.username;
     user.password = req.body.password;
-    user.menu = req.body.menu;
+    //user.menu = req.body.menu;
 
     //save user and check for errors
     user.save(function(err) {
@@ -113,12 +113,41 @@ module.exports = function(app, express) {
 
   //routes that end in /img
   apiRouter.route('/img')
-    //GET users at /api/img
+    //GET images at /api/img
     .get(function(req, res){
       Img.find(function(err, imgs) {
         if(err) res.send(err);
         
         //return images
+        res.json(imgs);  
+      });
+    });
+
+  //POST menu at /api/menu
+  apiRouter.post('/menu/', function(req, res) {
+    //create new instance of Img model
+    var menu = new Menu();
+
+    //set menu info (from request)
+    menu.name = req.body.name;
+    menu.price = req.body.price;
+    menu.description = req.body.description;
+    menu.user_id = req.body.user_id;
+
+    //save menu and check for errors
+    menu.save(function(err) {
+      if(err) throw err;
+      res.json({ message: 'Menu added!' });
+    });
+  })
+
+  //GET menu
+  apiRouter.route('/menu')
+    .get(function(req, res){
+      Menu.find(function(err, imgs) {
+        if(err) res.send(err);
+        
+        //return menu
         res.json(imgs);  
       });
     });
