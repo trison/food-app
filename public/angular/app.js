@@ -139,7 +139,7 @@ angular.module('foodApp', [
 	})
 	// ********************************************
 	// USER EDIT CONTROLLER
-	.controller('userEditController', function($routeParams, User) {
+	.controller('userEditController', function($routeParams, User, Menu) {
 		var vm = this;
 		vm.type = 'edit';
 
@@ -163,19 +163,26 @@ angular.module('foodApp', [
 
 	// ********************************************
 	// PROFILE CONTROLLER
-	.controller('profileController', function($routeParams, $route, Auth, User){
+	.controller('profileController', function($routeParams, $route, Auth, User, Menu){
 		var vm = this;
 
 		vm.array2 = [
 			{"name": "1", "price":"2", "description": "damn it's really good"},
 			{"name": "2", "price":"5", "description": "yeah this one's ok"}
-		]
+		];
 		
 		Auth.getUser()
 			.then(function(data){
 				vm.user = data.data;
-				vm.a = data.data.menu;
+				//vm.a = data.data.menu;
 		});
+
+		vm.getUserMenu = function(userId){
+			var menu = User.getMenu(userId);
+			return menu;
+		};
+
+
 	})
 
 	// ********************************************

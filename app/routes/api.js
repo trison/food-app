@@ -144,11 +144,21 @@ module.exports = function(app, express) {
   //GET menu
   apiRouter.route('/menu')
     .get(function(req, res){
-      Menu.find(function(err, imgs) {
+      Menu.find(function(err, menu) {
         if(err) res.send(err);
         
         //return menu
-        res.json(imgs);  
+        res.json(menu);  
+      });
+    });
+
+    apiRouter.route('/menu/:user_id')
+    .get(function(req, res){
+      Menu.find( { user_id: req.params.user_id }, function(err, menu) {
+        if(err) res.send(err);
+
+        //return that menu
+        res.json(menu);
       });
     });
 

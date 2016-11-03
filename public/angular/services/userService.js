@@ -31,5 +31,10 @@ angular.module('userService', [])
 		userFactory.delete = function(id){
 			return $http.delete('/api/users/'+id);
 		};
+
+		//GET user's menu
+		userFactory.getMenu = function(userId){
+			return $http.get('/api/menu/'+userId)
+		};
 		return userFactory;
 	});
