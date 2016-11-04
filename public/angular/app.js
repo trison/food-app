@@ -210,6 +210,18 @@ angular.module('foodApp', [
 			.success(function(menu) {
 				vm.menuData = menu;
 			});
+
+		vm.saveMenu = function() {
+			vm.processing = true;
+			vm.message = '';
+
+			User.updateMenu($routeParams._id, vm.menuData)
+				.success(function(data) {
+					vm.processing = false;
+					vm.menuData = {};
+					vm.message = data.message;
+				});
+		};
 	})
 
 	// ********************************************

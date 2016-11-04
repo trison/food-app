@@ -158,28 +158,38 @@ module.exports = function(app, express) {
     });
 
     //GET that user's menu
-    apiRouter.route('/menu/:user_id')
-    .get(function(req, res){
-      Menu.find( { user_id: req.params.user_id }, function(err, menu) {
+    // apiRouter.route('/menu/:user_id')
+    // .get(function(req, res){
+    //   Menu.find( { user_id: req.params.user_id }, function(err, menu) {
+    //     if(err) res.send(err);
+
+    //     //return that menu
+    //     res.json(menu);
+    //   });
+    // });
+
+    //***ROUTES FOR menu/:_id
+    apiRouter.route('/menu/:_id')
+    //GET menu with id (at /api/menu/:_id
+    .get(function(req, res) {
+      Menu.findById(req.params._id, function(err, menu) {
         if(err) res.send(err);
 
         //return that menu
         res.json(menu);
       });
-    });
-
-    apiRouter.route('/menu/:user_id')
+    })
     //PUT (update) menu at /api/menu/:user_id
     .put(function(req, res) {
       //use menu model to find the menu we want
-      Menu.find( { user_id: req.params.user_id }, function(err, menu){
+      Menu.findById( req.params._id, function(err, menu){
         if(err) res.send(err);
       
         //update only if new
         if (req.body.name) menu.name = req.body.name;
         if (req.body.price) menu.price = req.body.price;
-        if (req.body.description) user.description = req.body.description;
-        if(req.body.user_id) user.user_id = req.body.user_id;
+        if (req.body.description) menu.description = req.body.description;
+        if(req.body.user_id) menu.user_id = req.body.user_id;
 
         //save menu
         menu.save(function(err){
@@ -192,15 +202,7 @@ module.exports = function(app, express) {
     })
 
     apiRouter.route('/menu/:_id')
-    //GET menu with id (at /api/menu/:_id
-    .get(function(req, res) {
-      Menu.findById(req.params._id, function(err, menu) {
-        if(err) res.send(err);
-
-        //return that menu
-        res.json(menu);
-      });
-    })
+    
     //DELETE menu item at /api/menu/:_id
     .delete(function(req, res) {
       Menu.remove(

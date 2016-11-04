@@ -48,8 +48,8 @@ angular.module('userService', [])
 		};
 
 		//PUT (update) a menu item
-		userFactory.updateMenu = function(userId, menuData){
-			return $http.put('/api/menu/'+userId, menuData)
+		userFactory.updateMenu = function(menuId, menuData){
+			return $http.put('/api/menu/'+menuId, menuData)
 		};
 
 		//POST (create) a menu item
