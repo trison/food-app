@@ -32,9 +32,35 @@ angular.module('userService', [])
 			return $http.delete('/api/users/'+id);
 		};
 
+		//Get all the menus
+		userFactory.menus = function(){
+			return $http.get('api/menu/');
+		};
+
 		//GET user's menu
-		userFactory.getMenu = function(userId){
+		userFactory.getUserMenu = function(userId){
 			return $http.get('/api/menu/'+userId)
 		};
+
+		//GET particular menu
+		userFactory.getMenu = function(menuId){
+			return $http.get('/api/menu/'+menuId)
+		};
+
+		//PUT (update) a menu item
+		userFactory.updateMenu = function(userId, menuData){
+			return $http.put('/api/menu/'+userId, menuData)
+		};
+
+		//POST (create) a menu item
+		userFactory.create = function(menuData){
+			return $http.post('/api/menu/', menuData);
+		};
+
+		//DELETE a menu item
+		userFactory.deleteMenu = function(menuId){
+			return $http.delete('/api/menu/'+menuId);
+		};
+
 		return userFactory;
 	});

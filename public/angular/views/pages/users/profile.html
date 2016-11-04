@@ -20,10 +20,6 @@
 			<th>Email</th>
 			<td>{{ profile.user.email }}</td>
 		</tr>
-<!-- 		<tr>
-			<th>what</th>
-			<td>{{ profile.a.name }}</td>
-		</tr> -->
 	</table>
 	<a ng-href="/users/{{ profile.user._id }}" class="btn btn-danger">Edit</a>
 </div>
@@ -32,30 +28,30 @@
 	<h1>Menu</h1>
 </div>
 
-<div class = "jumbotron profile-page">
-	 <table class="table table-bordered table-striped">
-	 	<thead>
-	 		<tr>
-		 		<td>Name</td>
-		 		<td>Price</td>
-		 		<td>Description</td>
-		 		<td>{{ profile.a}}</td>
-		 	<tr>
-	 	</thead>
-	 	<tr ng-repeat="item in profile.a">
-	 		<td>{{ item.name}}</td>
-	 		<td>{{item.price}}</td>
-	 		<td>{{item.description}}</td>
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>_id</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Description</th>
+			<th>User Id</th>
+			<th></th>
 		</tr>
+	</thead>
+	<tbody>
+	    <!-- LOOP OVER THE MENU -->
+		<tr ng-repeat="menu in profile.menus" ng-if="menu.user_id == profile.user._id">
+			<td>{{ menu._id }}</td>
+			<td>{{ menu.name }}</td>
+			<td>${{ menu.price }}</td>
+			<td>{{ menu.description }}</td>
+			<td>{{ menu.user_id }}</td>
+			<td class="col-sm-2">
+				<a ng-href="/menu/{{ menu._id }}" class="btn btn-danger">Edit</a>
+				<a href="#" ng-click="profile.deleteMenu(menu._id)" class="btn btn-primary">Delete</a>
+			</td>
+		</tr>
+  	</tbody>
+</table>
 
-	 	<!-- <tr ng-repeat="item in profile.user.menu">
-	 		<td>{{ item.name}}</td>
-	 		<td>{{item.price}}</td>
-	 		<td>{{item.description}}</td>
-		</tr> -->
-	 </table>
-</div>
-
-<a href="#" ng-click="profile.getUserMenu( profile.user._id )" class="btn btn-primary">Clicky</a>
-
-</form>

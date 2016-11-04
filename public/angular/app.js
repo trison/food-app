@@ -98,6 +98,13 @@ angular.module('foodApp', [
 			vm.users = data;
 		});
 
+		// get menus on page load
+		User.menus().success(function(data) {
+			vm.processing = false;
+
+			vm.menus = data;
+		});
+
 		vm.deleteUser = function(id) {
 			vm.processing = true;
 			
@@ -110,6 +117,20 @@ angular.module('foodApp', [
 					.success(function(data){
 						vm.processing = false;
 						vm.users = data;
+				});
+			});
+		};
+
+		vm.deleteMenu = function(menuId){
+			vm.processing = true;
+
+			User.deleteMenu(menuId)
+				.success(function(data) {
+
+				User.menus()
+					.success(function(data){
+						vm.processing = false;
+						vm.menus = data;
 				});
 			});
 		};
@@ -139,7 +160,7 @@ angular.module('foodApp', [
 	})
 	// ********************************************
 	// USER EDIT CONTROLLER
-	.controller('userEditController', function($routeParams, User, Menu) {
+	.controller('userEditController', function($routeParams, User) {
 		var vm = this;
 		vm.type = 'edit';
 
@@ -159,30 +180,75 @@ angular.module('foodApp', [
 					vm.message = data.message;
 				});
 		};
+
+		// vm.saveMenu = function() {
+		// 	vm.processing = true;
+		// 	vm.message = '';
+
+		// 	User.updateMenu($routeParams.user_id, vm.menuData)
+		// 		.success(function(data) {
+		// 			vm.processing = false;
+		// 			vm.menuData = {};
+		// 			vm.menuMessage = data.menuMessage;
+		// 		});
+		// };
+	})
+	// ********************************************
+	// MENU CREATE CONTROLLER
+	.controller('menuCreateController', function(User) {
+		var vm = this;
+		vm.type = 'create';
+
+	})
+	// ********************************************
+	// MENU EDIT CONTROLLER
+	.controller('menuEditController', function($routeParams, User) {
+		var vm = this;
+		vm.type = 'edit';
+
+		User.getMenu($routeParams._id)
+			.success(function(menu) {
+				vm.menuData = menu;
+			});
 	})
 
 	// ********************************************
 	// PROFILE CONTROLLER
-	.controller('profileController', function($routeParams, $route, Auth, User, Menu){
+	.controller('profileController', function($routeParams, $route, Auth, User){
 		var vm = this;
-
-		vm.array2 = [
-			{"name": "1", "price":"2", "description": "damn it's really good"},
-			{"name": "2", "price":"5", "description": "yeah this one's ok"}
-		];
+		vm.user = "";
 		
 		Auth.getUser()
 			.then(function(data){
 				vm.user = data.data;
-				//vm.a = data.data.menu;
 		});
 
-		vm.getUserMenu = function(userId){
-			var menu = User.getMenu(userId);
-			return menu;
+		User.menus().success(function(data) {
+			vm.menus = data;
+		});
+
+		vm.deleteMenu = function(menuId){
+			vm.processing = true;
+
+			User.deleteMenu(menuId)
+				.success(function(data) {
+
+				User.menus()
+					.success(function(data){
+						vm.processing = false;
+						vm.menus = data;
+				});
+			});
 		};
 
+		// User.getMenu(vm.user._id).success(function(data){
+		// 	vm.menus = data;
+		// });
 
+		// vm.getUserMenu = function(userId){
+		// 	var menu = User.getMenu(userId);
+		// 	return menu;
+		// };
 	})
 
 	// ********************************************

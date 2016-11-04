@@ -74,7 +74,6 @@ module.exports = function(app, express) {
     user.email = req.body.email;
     user.username = req.body.username;
     user.password = req.body.password;
-    //user.menu = req.body.menu;
 
     //save user and check for errors
     user.save(function(err) {
@@ -136,12 +135,18 @@ module.exports = function(app, express) {
 
     //save menu and check for errors
     menu.save(function(err) {
-      if(err) throw err;
+      if(err) {
+        //duplicate entry
+        if(err.code == 11000)
+          return res.json({ success: false, message: 'A menu with that name already exists. '});
+        else
+          return res.send(err);
+      }
       res.json({ message: 'Menu added!' });
     });
   })
 
-  //GET menu
+  //GET all menus
   apiRouter.route('/menu')
     .get(function(req, res){
       Menu.find(function(err, menu) {
@@ -152,6 +157,7 @@ module.exports = function(app, express) {
       });
     });
 
+    //GET that user's menu
     apiRouter.route('/menu/:user_id')
     .get(function(req, res){
       Menu.find( { user_id: req.params.user_id }, function(err, menu) {
@@ -162,12 +168,53 @@ module.exports = function(app, express) {
       });
     });
 
+    apiRouter.route('/menu/:user_id')
+    //PUT (update) menu at /api/menu/:user_id
+    .put(function(req, res) {
+      //use menu model to find the menu we want
+      Menu.find( { user_id: req.params.user_id }, function(err, menu){
+        if(err) res.send(err);
+      
+        //update only if new
+        if (req.body.name) menu.name = req.body.name;
+        if (req.body.price) menu.price = req.body.price;
+        if (req.body.description) user.description = req.body.description;
+        if(req.body.user_id) user.user_id = req.body.user_id;
+
+        //save menu
+        menu.save(function(err){
+          if(err) res.send(err);
+          
+          //return a message
+          res.json({ message: 'Menu updated!' });
+        });
+      });
+    })
+
+    apiRouter.route('/menu/:_id')
+    //GET menu with id (at /api/menu/:_id
+    .get(function(req, res) {
+      Menu.findById(req.params._id, function(err, menu) {
+        if(err) res.send(err);
+
+        //return that menu
+        res.json(menu);
+      });
+    })
+    //DELETE menu item at /api/menu/:_id
+    .delete(function(req, res) {
+      Menu.remove(
+        { _id: req.params._id },
+        function(err, menu){
+          if(err) return res.send(err);
+          res.json({ message: 'Successfully deleted menu item' });
+        });
+    });
+
   // ************** MIDDLEWARE for requests
   apiRouter.use(function(req, res, next) {
     //do logging
     console.log('Somebody just came to the app!');
-
-    //add more middleware...
     
     //ROUTE MIDDLEWARE TO VERIFY TOKEN
     //check header or URL or POST parameters for token
