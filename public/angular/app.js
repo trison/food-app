@@ -205,7 +205,7 @@ angular.module('foodApp', [
 
 	// ********************************************
 	// MENU EDIT CONTROLLER
-	.controller('menuEditController', function($routeParams, User) {
+	.controller('menuEditController', function($routeParams, User, Upload, $window) {
 		var vm = this;
 		vm.type = 'edit';
 
@@ -225,11 +225,36 @@ angular.module('foodApp', [
 					vm.message = data.message;
 				});
 		};
+		vm.submit = function(){ //function to call on form submit
+            if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
+                vm.upload(vm.file); //call upload function
+            }
+        }
+        vm.upload = function (file) {
+            Upload.upload({
+                url: 'http://localhost:8080/upload', //webAPI exposed to upload the file
+                data:{file:file} //pass file as data, should be user ng-model
+            }).then(function (resp) { //upload function returns a promise
+                if(resp.data.error_code === 0){ //validate success
+                    $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+                } else {
+                    $window.alert('an error occured');
+                }
+            }, function (resp) { //catch error
+                console.log('Error status: ' + resp.status);
+                $window.alert('Error status: ' + resp.status);
+            }, function (evt) {
+                console.log(evt);
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+            });
+        };
 	})
 
 	// ********************************************
 	// PROFILE CONTROLLER
-	.controller('profileController', function($routeParams, $route, Auth, User, Upload){
+	.controller('profileController', function($routeParams, $route, Auth, User, Upload, $window){
 		var vm = this;
 		vm.user = "";
 		
@@ -261,6 +286,7 @@ angular.module('foodApp', [
                 vm.upload(vm.file); //call upload function
             }
         }
+        
         vm.upload = function (file) {
             Upload.upload({
                 url: 'http://localhost:8080/upload', //webAPI exposed to upload the file
@@ -274,21 +300,21 @@ angular.module('foodApp', [
             }, function (resp) { //catch error
                 console.log('Error status: ' + resp.status);
                 $window.alert('Error status: ' + resp.status);
-            }, function (evt) { 
+            }, function (evt) {
                 console.log(evt);
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                 console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                 vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
             });
         };
-		User.getMenu(vm.user._id).success(function(data){
-			vm.menus = data;
-		});
+		// User.getMenu(vm.user._id).success(function(data){
+		// 	vm.menus = data;
+		// });
 
-		vm.getUserMenu = function(userId){
-			var menu = User.getMenu(userId);
-			return menu;
-		};
+		// vm.getUserMenu = function(userId){
+		// 	var menu = User.getMenu(userId);
+		// 	return menu;
+		// };
 	})
 
 	// ********************************************

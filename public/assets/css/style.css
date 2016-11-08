@@ -18,6 +18,12 @@ main {
 .profile-page th{
 	width: 40%;
 }
+.singleMenu-page img{
+	 width: 50%;
+	 display: block;
+	 margin: 0 auto;
+	 margin-bottom: 5%;
+}
 
 tr{
 	background-color: rgba(190, 190, 190, 0.7);
@@ -28,7 +34,7 @@ tr{
 }
 
 .hello{
-	font-size: 2em;
+	font-size: 3em;
 	font-weight: bold;
 	color: white;
 	padding: 15px 0 10px 0;

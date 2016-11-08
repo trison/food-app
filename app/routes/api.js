@@ -132,6 +132,7 @@ module.exports = function(app, express) {
     menu.price = req.body.price;
     menu.description = req.body.description;
     menu.user_id = req.body.user_id;
+    menu.img_url = req.body.img_url;
 
     //save menu and check for errors
     menu.save(function(err) {
@@ -189,7 +190,8 @@ module.exports = function(app, express) {
         if (req.body.name) menu.name = req.body.name;
         if (req.body.price) menu.price = req.body.price;
         if (req.body.description) menu.description = req.body.description;
-        if(req.body.user_id) menu.user_id = req.body.user_id;
+        if (req.body.user_id) menu.user_id = req.body.user_id;
+        if (req.body.img_url) menu.img_url = req.body.img_url;
 
         //save menu
         menu.save(function(err){
@@ -201,7 +203,7 @@ module.exports = function(app, express) {
       });
     })
 
-    apiRouter.route('/menu/:_id')
+    // apiRouter.route('/menu/:_id')
     
     //DELETE menu item at /api/menu/:_id
     .delete(function(req, res) {

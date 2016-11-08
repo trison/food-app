@@ -5,7 +5,8 @@ var MenuSchema = new Schema({
 	name: { type: String, required: true, index: {unique: true} },
 	price: { type: String},
 	description: { type: String},
-	user_id: { type: String}
+	user_id: { type: String},
+	img_url: { type: String }
 });
 
 module.exports = mongoose.model('Menu', MenuSchema);
