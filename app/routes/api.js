@@ -124,7 +124,7 @@ module.exports = function(app, express) {
 
   //POST menu at /api/menu
   apiRouter.post('/menu/', function(req, res) {
-    //create new instance of Img model
+    //create new instance of Menu model
     var menu = new Menu();
 
     //set menu info (from request)
@@ -142,12 +142,12 @@ module.exports = function(app, express) {
         else
           return res.send(err);
       }
-      res.json({ message: 'Menu added!' });
+      res.json({ message: 'Menu added! '+req.body });
     });
   })
 
   //GET all menus
-  apiRouter.route('/menu')
+  apiRouter.route('/menu/')
     .get(function(req, res){
       Menu.find(function(err, menu) {
         if(err) res.send(err);
@@ -170,7 +170,7 @@ module.exports = function(app, express) {
 
     //***ROUTES FOR menu/:_id
     apiRouter.route('/menu/:_id')
-    //GET menu with id (at /api/menu/:_id
+    //GET menu with id (at /api/menu/:_id)
     .get(function(req, res) {
       Menu.findById(req.params._id, function(err, menu) {
         if(err) res.send(err);

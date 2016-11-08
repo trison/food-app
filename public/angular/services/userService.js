@@ -42,6 +42,11 @@ angular.module('userService', [])
 			return $http.get('/api/menu/'+userId)
 		};
 
+		//POST (create) a menu item
+		userFactory.createMenu = function(menuData){
+			return $http.post('/api/menu/', menuData);
+		};
+
 		//GET particular menu
 		userFactory.getMenu = function(menuId){
 			return $http.get('/api/menu/'+menuId)
@@ -50,11 +55,6 @@ angular.module('userService', [])
 		//PUT (update) a menu item
 		userFactory.updateMenu = function(menuId, menuData){
 			return $http.put('/api/menu/'+menuId, menuData)
-		};
-
-		//POST (create) a menu item
-		userFactory.create = function(menuData){
-			return $http.post('/api/menu/', menuData);
 		};
 
 		//DELETE a menu item

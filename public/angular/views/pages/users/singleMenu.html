@@ -1,17 +1,7 @@
-<div class="row show-hide-message" ng-show="user.message">
-	<div class="col-sm-6 col-sm-offset-2">
-		
-<!-- 		<div class="alert alert-info">
-			{{ user.message }}
-		</div> -->
-
-	</div>
-</div>
-
-<!-- MENU -->
 <div class="page-header">
 	<h1 ng-if="user.type == 'create'">Create Menu</h1>
 	<h1 ng-if="user.type == 'edit'">Edit Menu</h1>
+	<script type="text/javascript">console.log('WHADDUP');</script>
 </div>
 
 <form class="form-horizontal jumbotron" ng-submit="user.saveMenu()">
@@ -43,13 +33,13 @@
 			<input type="text" class="form-control" ng-model="user.menuData.description">
 		</div>
 	</div>
-
+<!-- 
 	<div class="form-group">
 		<label class="col-sm-2 control-label">User Id</label>
 		<div class="col-sm-6">
 			<input type="password" class="form-control" ng-model="user.menuData.user_id">
 		</div>
-	</div>
+	</div> -->
 	
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-6">
@@ -62,11 +52,9 @@
 
 <div class="row show-hide-message" ng-show="user.message">
 	<div class="col-sm-6 col-sm-offset-2">
-		
 		<div class="alert alert-info">
 			{{ user.message }}
 		</div>
-
 	</div>
 </div>
 

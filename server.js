@@ -8,8 +8,11 @@ var mongoose = require('mongoose');
 var config = require('./config');
 var port = process.env.PORT || 8080;
 var jwt = require('jsonwebtoken');
+var multer = require('multer');
 var superSecret = config.secret;
 var User = require('./app/models/user');
+var Img = require('./app/models/img');
+var Menu = require('./app/models/menu');
 
 var fs = require('fs');
 
@@ -18,6 +21,31 @@ mongoose.connect(config.database)
 //use body parser to grab info from POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+//use multer for file upload
+var storage = multer.diskStorage({ //multers disk storage settings
+        destination: function (req, file, cb) {
+            cb(null, './public/img/uploads/')
+        },
+        filename: function (req, file, cb) {
+            var datetimestamp = Date.now();
+            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+        }
+    });
+
+//multer instance
+var upload = multer({ storage: storage }).single('file');
+
+/** API path that will upload the files */
+app.post('/upload', function(req, res) {
+	upload(req,res,function(err){
+	    if(err){
+	         res.json({error_code:1,err_desc:err});
+	         return;
+	    }
+	     res.json({error_code:0,err_desc:null});
+	})
+});
 
 //configure app to handle CORS requests
 app.use(function(req, res, next){

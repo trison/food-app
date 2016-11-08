@@ -58,6 +58,11 @@ angular.module('app.routes', ['ngRoute'])
 			  controller: 'menuEditController',
 			  controllerAs: 'user'
 			})
+			.when('/menu/create', {
+			  templateUrl: 'angular/views/pages/users/singleMenu.html',
+			  controller: 'menuCreateController',
+			  controllerAs: 'user'
+			})
 			;
 		//set app to have pretty URLS
 		$locationProvider.html5Mode(true);
