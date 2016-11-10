@@ -50,6 +50,12 @@ tr{
 	background-color: rgba(195, 195, 195, 0.8);
 }
 
+/*img upload*/
+.upload{
+	width:250px;
+	margin: 1% 0 1% 0;
+}
+
 .navbar-nav{
 	/*background-color: red;*/
 }

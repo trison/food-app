@@ -226,17 +226,31 @@ angular.module('foodApp', [
 				});
 		};
 		vm.submit = function(){ //function to call on form submit
+			var date = new Date();
+            var month = date.getMonth();
+            console.log("month "+month);
+	        var day = date.getDay();
+            console.log("day "+day);
+	        var year = date.getFullYear();
+            console.log("year "+year);
+            var timeStamp = year+month+day;
+
+			
             if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
+				vm.file.originalname = vm.file.name;
+				console.log(vm.file.originalname.split('.')[0]);//get name without extension
+
                 vm.upload(vm.file); //call upload function
             }
         }
+        
         vm.upload = function (file) {
             Upload.upload({
-                url: 'http://localhost:8080/upload', //webAPI exposed to upload the file
+                url: '/upload', //webAPI exposed to upload the file
                 data:{file:file} //pass file as data, should be user ng-model
             }).then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){ //validate success
-                    $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+                    $window.alert('Success ' + resp.config.data.file.name + ' uploaded. Response: ');
                 } else {
                     $window.alert('an error occured');
                 }
@@ -246,7 +260,7 @@ angular.module('foodApp', [
             }, function (evt) {
                 console.log(evt);
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                //console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                 vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
             });
         };
@@ -282,18 +296,31 @@ angular.module('foodApp', [
 		};
 
 		vm.submit = function(){ //function to call on form submit
+			var date = new Date();
+            var month = date.getMonth();
+            console.log("month "+month);
+	        var day = date.getDay();
+            console.log("day "+day);
+	        var year = date.getFullYear();
+            console.log("year "+year);
+            var timeStamp = year+month+day;
+
+			
             if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
+				vm.file.originalname = vm.file.name;
+				console.log(vm.file.originalname.split('.')[0]);//get name without extension
+
                 vm.upload(vm.file); //call upload function
             }
         }
         
         vm.upload = function (file) {
             Upload.upload({
-                url: 'http://localhost:8080/upload', //webAPI exposed to upload the file
+                url: '/upload', //webAPI exposed to upload the file
                 data:{file:file} //pass file as data, should be user ng-model
             }).then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){ //validate success
-                    $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+                    $window.alert('Success ' + resp.config.data.file.name + ' uploaded. Response: ');
                 } else {
                     $window.alert('an error occured');
                 }
@@ -303,10 +330,12 @@ angular.module('foodApp', [
             }, function (evt) {
                 console.log(evt);
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                //console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                 vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
             });
         };
+
+
 		// User.getMenu(vm.user._id).success(function(data){
 		// 	vm.menus = data;
 		// });

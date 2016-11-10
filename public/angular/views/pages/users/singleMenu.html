@@ -70,23 +70,22 @@
 
 <div class = "jumbotron">
 <h1>Image Upload</h1>
-        <form name="profile.upload_form">
-                Single image with validations
+        <form name="user.upload_form">
             <input
                type="file"
                ngf-select
-               ng-model="profile.file"
+               ng-model="user.file"
                name="file"
                ngf-pattern="'image/*'"
                accept="image/*"
-               ngf-max-size="20MB"
+               ngf-max-size="10MB"
                />
-            <img style="width:250px; margin: 1% 0 1% 0;" ngf-thumbnail="profile.file || '/img/placeholder.png'"/>
-            <i ng-show="profile.upload_form.file.$error.required">*required</i><br>
-            <i ng-show="profile.upload_form.file.$error.maxSize">File too large 
-            {{up.file.size / 1000000|number:1}}MB: max 5M</i>
+            <img class="upload" ngf-thumbnail="user.file || '/img/placeholder.png'"/>
+            <i ng-show="user.upload_form.file.$error.required">*required</i><br>
+            <i ng-show="user.upload_form.file.$error.maxSize">File too large 
+            {{user.file.size / 1000000|number:1}}MB: max 10M</i>
             <button type="submit" ng-click="profile.submit()">submit</button>
-            <p>{{up.progress}}
+            <p>{{user.progress}}
         </form>
 </div>
 </div>
