@@ -235,22 +235,32 @@ angular.module('foodApp', [
             console.log("year "+year);
             var timeStamp = year+month+day;
 
+            var fullName = vm.file.name;
+
 			
             if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
-				vm.file.originalname = vm.file.name;
-				console.log(vm.file.originalname.split('.')[0]);//get name without extension
+				var name = fullName.split('.')[0];//get name without extension
+	        	var ext = fullName.split('.')[fullName.split('.').length -1];
+	        	var fileName = name + '-' + timeStamp + '.' + ext;
 
-                vm.upload(vm.file); //call upload function
+                vm.upload(vm.file, fileName); //call upload function
             }
         }
         
-        vm.upload = function (file) {
+        vm.upload = function (file, fileName) {
             Upload.upload({
                 url: '/upload', //webAPI exposed to upload the file
                 data:{file:file} //pass file as data, should be user ng-model
             }).then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){ //validate success
                     $window.alert('Success ' + resp.config.data.file.name + ' uploaded. Response: ');
+                    vm.menuData.img_url = "/img/menus/"+fileName;
+                    User.updateMenu($routeParams._id, vm.menuData)
+						.success(function(data) {
+							vm.processing = false;
+							vm.menuData = {};
+							vm.message = data.message;
+						});
                 } else {
                     $window.alert('an error occured');
                 }

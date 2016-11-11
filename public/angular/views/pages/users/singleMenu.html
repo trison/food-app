@@ -84,7 +84,7 @@
             <i ng-show="user.upload_form.file.$error.required">*required</i><br>
             <i ng-show="user.upload_form.file.$error.maxSize">File too large 
             {{user.file.size / 1000000|number:1}}MB: max 10M</i>
-            <button type="submit" ng-click="profile.submit()">submit</button>
+            <button type="submit" ng-click="user.submit()">submit</button>
             <p>{{user.progress}}
         </form>
 </div>
