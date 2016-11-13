@@ -53,16 +53,17 @@ angular.module('app.routes', ['ngRoute'])
 			  controller: 'profileController',
 			  controllerAs: 'profile'
 			})
-			.when('/menu/:_id', {
-			  templateUrl: 'angular/views/pages/users/singleMenu.html',
-			  controller: 'menuEditController',
-			  controllerAs: 'user'
-			})
 			.when('/menu/create', {
 			  templateUrl: 'angular/views/pages/users/singleMenu.html',
 			  controller: 'menuCreateController',
 			  controllerAs: 'user'
 			})
+			.when('/menu/:_id', {
+			  templateUrl: 'angular/views/pages/users/singleMenu.html',
+			  controller: 'menuEditController',
+			  controllerAs: 'user'
+			})
+			
 			;
 		//set app to have pretty URLS
 		$locationProvider.html5Mode(true);

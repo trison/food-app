@@ -1,91 +1,82 @@
 <div class="singleMenu-page">
-<div class="page-header">
-	<h1 ng-if="user.type == 'create'">Create Menu</h1>
-	<h1 ng-if="user.type == 'edit'">Edit Menu</h1>
-</div>
+	<div class="page-header">
+		<h1 ng-if="user.type == 'create'">Create Menu</h1>
+		<h1 ng-if="user.type == 'edit'">Edit Menu</h1>
+	</div>
 
-<form class="form-horizontal jumbotron" ng-submit="user.saveMenu()">
+	<form class="form-horizontal jumbotron" ng-submit="user.saveMenu()">
+		<img ng-src="{{ user.menuData.img_url }}"/>
 
-	<img ng-src="{{ user.menuData.img_url }}"/>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">_id</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" ng-model="user.menuData._id">
+			</div>
+		</div>
 
-	<div class="form-group">
-		<label class="col-sm-2 control-label">_id</label>
-		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="user.menuData._id">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" ng-model="user.menuData.name">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Price</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" ng-model="user.menuData.price">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Description</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" ng-model="user.menuData.description">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Img URL</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" ng-model="user.menuData.img_url">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-6">
+				<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'create'">Create Menu</button>
+				<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'edit'">Update Menu</button>
+			</div>
+		</div>
+	</form>
+
+	<div class="row show-hide-message" ng-show="user.message">
+		<div class="col-sm-6 col-sm-offset-2">
+			<div class="alert alert-info">
+				{{ user.message }}
+			</div>
 		</div>
 	</div>
 
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Name</label>
-		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="user.menuData.name">
-		</div>
+	<div class = "jumbotron">
+	<h1>Image Upload</h1>
+	        <form name="user.upload_form">
+	            <input
+	               type="file"
+	               ngf-select
+	               ng-model="user.file"
+	               name="file"
+	               ngf-pattern="'image/*'"
+	               accept="image/*"
+	               ngf-max-size="10MB"
+	               />
+	            <img class="upload" ngf-thumbnail="user.file || '/img/placeholder.png'"/>
+	            <i ng-show="user.upload_form.file.$error.required">*required</i><br>
+	            <i ng-show="user.upload_form.file.$error.maxSize">File too large 
+	            {{user.file.size / 1000000|number:1}}MB: max 10M</i>
+	            <button type="submit" ng-click="user.submit()">submit</button>
+	            <p>{{user.progress}}
+	        </form>
 	</div>
-
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Price</label>
-		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="user.menuData.price">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Description</label>
-		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="user.menuData.description">
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Img URL</label>
-		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="user.menuData.img_url">
-		</div>
-	</div>
-
-<!-- 
-	<div class="form-group">
-		<label class="col-sm-2 control-label">User Id</label>
-		<div class="col-sm-6">
-			<input type="password" class="form-control" ng-model="user.menuData.user_id">
-		</div>
-	</div> -->
 	
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-6">
-			<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'create'">Create Menu</button>
-			<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'edit'">Update Menu</button>
-		</div>
-	</div>
-
-</form>
-
-<div class="row show-hide-message" ng-show="user.message">
-	<div class="col-sm-6 col-sm-offset-2">
-		<div class="alert alert-info">
-			{{ user.message }}
-		</div>
-	</div>
-</div>
-
-<div class = "jumbotron">
-<h1>Image Upload</h1>
-        <form name="user.upload_form">
-            <input
-               type="file"
-               ngf-select
-               ng-model="user.file"
-               name="file"
-               ngf-pattern="'image/*'"
-               accept="image/*"
-               ngf-max-size="10MB"
-               />
-            <img class="upload" ngf-thumbnail="user.file || '/img/placeholder.png'"/>
-            <i ng-show="user.upload_form.file.$error.required">*required</i><br>
-            <i ng-show="user.upload_form.file.$error.maxSize">File too large 
-            {{user.file.size / 1000000|number:1}}MB: max 10M</i>
-            <button type="submit" ng-click="user.submit()">submit</button>
-            <p>{{user.progress}}
-        </form>
-</div>
 </div>

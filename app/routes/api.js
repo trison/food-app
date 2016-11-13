@@ -169,51 +169,7 @@ module.exports = function(app, express) {
     //   });
     // });
 
-    //***ROUTES FOR menu/:_id
-    apiRouter.route('/menu/:_id')
-    //GET menu with id (at /api/menu/:_id)
-    .get(function(req, res) {
-      Menu.findById(req.params._id, function(err, menu) {
-        if(err) res.send(err);
-
-        //return that menu
-        res.json(menu);
-      });
-    })
-    //PUT (update) menu at /api/menu/:user_id
-    .put(function(req, res) {
-      //use menu model to find the menu we want
-      Menu.findById( req.params._id, function(err, menu){
-        if(err) res.send(err);
-      
-        //update only if new
-        if (req.body.name) menu.name = req.body.name;
-        if (req.body.price) menu.price = req.body.price;
-        if (req.body.description) menu.description = req.body.description;
-        if (req.body.user_id) menu.user_id = req.body.user_id;
-        if (req.body.img_url) menu.img_url = req.body.img_url;
-
-        //save menu
-        menu.save(function(err){
-          if(err) res.send(err);
-          
-          //return a message
-          res.json({ message: 'Menu updated!' });
-        });
-      });
-    })
-
-    // apiRouter.route('/menu/:_id')
     
-    //DELETE menu item at /api/menu/:_id
-    .delete(function(req, res) {
-      Menu.remove(
-        { _id: req.params._id },
-        function(err, menu){
-          if(err) return res.send(err);
-          res.json({ message: 'Successfully deleted menu item' });
-        });
-    });
 
   // ************** MIDDLEWARE for requests
   apiRouter.use(function(req, res, next) {
@@ -299,6 +255,49 @@ module.exports = function(app, express) {
         function(err, user){
           if(err) return res.send(err);
           res.json({ message: 'Succesfully deleted' });
+        });
+    });
+
+    //***ROUTES FOR menu/:_id
+    apiRouter.route('/menu/:_id')
+    //GET menu with id (at /api/menu/:_id)
+    .get(function(req, res) {
+      Menu.findById(req.params._id, function(err, menu) {
+        if(err) res.send(err);
+
+        //return that menu
+        res.json(menu);
+      });
+    })
+    //PUT (update) menu at /api/menu/:user_id
+    .put(function(req, res) {
+      //use menu model to find the menu we want
+      Menu.findById( req.params._id, function(err, menu){
+        if(err) res.send(err);
+      
+        //update only if new
+        if (req.body.name) menu.name = req.body.name;
+        if (req.body.price) menu.price = req.body.price;
+        if (req.body.description) menu.description = req.body.description;
+        if (req.body.user_id) menu.user_id = req.body.user_id;
+        if (req.body.img_url) menu.img_url = req.body.img_url;
+
+        //save menu
+        menu.save(function(err){
+          if(err) res.send(err);
+          
+          //return a message
+          res.json({ message: 'Menu updated!' });
+        });
+      });
+    })
+    //DELETE menu item at /api/menu/:_id
+    .delete(function(req, res) {
+      Menu.remove(
+        { _id: req.params._id },
+        function(err, menu){
+          if(err) return res.send(err);
+          res.json({ message: 'Successfully deleted menu item' });
         });
     });
 
