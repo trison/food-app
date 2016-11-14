@@ -187,6 +187,11 @@ angular.module('foodApp', [
 		var vm = this;
 		vm.type = 'create';
 
+		// User.get($routeParams.user_id)
+		// 	.success(function(data) {
+		// 		vm.userData = data;
+		// 	});
+
 		vm.saveMenu = function() {
 			vm.processing = true;
 			vm.message = '';
@@ -230,7 +235,6 @@ angular.module('foodApp', [
 
             var timeStamp = year+month+day;
             var fullName = vm.file.name;
-
 			
             if (vm.upload_form.file.$valid && vm.file) { //check if form is valid
 				var name = fullName.split('.')[0];

@@ -5,12 +5,23 @@
 	</div>
 
 	<form class="form-horizontal jumbotron" ng-submit="user.saveMenu()">
-		<img ng-src="{{ user.menuData.img_url }}"/>
+		<div class="menu-image">
+			<img ng-src="{{ user.menuData.img_url }}"/>
+			<div class="edit-button"></div>
+		</div>
+		<div class="form-container">
 
 		<div class="form-group">
 			<label class="col-sm-2 control-label">_id</label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" ng-model="user.menuData._id">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">User ID</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" ng-model="user.menuData.user_id">
 			</div>
 		</div>
 
@@ -36,6 +47,13 @@
 		</div>
 
 		<div class="form-group">
+			<label class="col-sm-2 control-label">Prep Time</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" ng-model="user.menuData.prep_time">
+			</div>
+		</div>
+
+		<div class="form-group">
 			<label class="col-sm-2 control-label">Img URL</label>
 			<div class="col-sm-6">
 				<input type="text" class="form-control" ng-model="user.menuData.img_url">
@@ -48,17 +66,19 @@
 				<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'edit'">Update Menu</button>
 			</div>
 		</div>
+		</div>
 	</form>
-
+	
 	<div class="row show-hide-message" ng-show="user.message">
 		<div class="col-sm-6 col-sm-offset-2">
 			<div class="alert alert-info">
 				{{ user.message }}
+				<br><br><a href="/profile">Back to Profile</a>
 			</div>
 		</div>
 	</div>
 
-	<div class = "jumbotron">
+	<div class="img-upload jumbotron" ng-if="!user.menuData.img_url">
 	<h1>Image Upload</h1>
 	        <form name="user.upload_form">
 	            <input
@@ -74,9 +94,10 @@
 	            <i ng-show="user.upload_form.file.$error.required">*required</i><br>
 	            <i ng-show="user.upload_form.file.$error.maxSize">File too large 
 	            {{user.file.size / 1000000|number:1}}MB: max 10M</i>
-	            <button type="submit" ng-click="user.submit()">submit</button>
+	            <button type="submit" class="btn btn-success btn-lg btn-block" ng-click="user.submit()">submit</button>
 	            <p>{{user.progress}}
 	        </form>
 	</div>
+	
 	
 </div>

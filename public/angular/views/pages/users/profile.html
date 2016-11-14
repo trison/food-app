@@ -4,8 +4,8 @@
 
 <div class = "jumbotron profile-page">
 	 <table class="table table-bordered table-striped">
-		<tr>
-			<th>_id</th>
+ 		<tr>
+			<th>User ID</th>
 			<td>{{ profile.user._id }}</td>
 		</tr>
 		<tr>
@@ -28,7 +28,7 @@
 	<h1>Menu</h1>
 </div>
 
-
+<div class="form-horizontal jumbotron">
 <table class="table table-bordered table-striped">
 	<thead>
 		<tr>
@@ -37,6 +37,7 @@
 			<th>Price</th>
 			<th>Description</th>
 			<th>User Id</th>
+			<th>Prep Time</th>
 			<th>IMG URL</th>
 			<th></th>
 		</tr>
@@ -49,6 +50,7 @@
 			<td>${{ menu.price }}</td>
 			<td>{{ menu.description }}</td>
 			<td>{{ menu.user_id }}</td>
+			<td>{{ menu.prep_time }}</td>
 			<td>{{ menu.img_url }}</td>
 
 			<td class="col-sm-2">
@@ -61,7 +63,7 @@
 <a href="/menu/create" class="btn btn-default">
 	<span class="glyphicon glyphicon-plus"></span>Add
 </a>
-
+</div>
 <!-- <a ng-href="/menu/create/" class="btn btn-default">
 	<span class="glyphicon glyphicon-plus"></span>Add Menu Item
 </a> -->

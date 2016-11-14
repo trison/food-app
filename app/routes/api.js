@@ -131,6 +131,7 @@ module.exports = function(app, express) {
     menu.name = req.body.name;
     menu.price = req.body.price;
     menu.description = req.body.description;
+    menu.prep_time = req.body.prep_time;
     menu.user_id = req.body.user_id;
     menu.img_url = req.body.img_url;
 
@@ -258,7 +259,7 @@ module.exports = function(app, express) {
         });
     });
 
-    //***ROUTES FOR menu/:_id
+    //----------------ROUTES FOR menu/:_id
     apiRouter.route('/menu/:_id')
     //GET menu with id (at /api/menu/:_id)
     .get(function(req, res) {
@@ -279,6 +280,7 @@ module.exports = function(app, express) {
         if (req.body.name) menu.name = req.body.name;
         if (req.body.price) menu.price = req.body.price;
         if (req.body.description) menu.description = req.body.description;
+        if (req.body.prep_time) menu.prep_time = req.body.prep_time;
         if (req.body.user_id) menu.user_id = req.body.user_id;
         if (req.body.img_url) menu.img_url = req.body.img_url;
 

@@ -63,7 +63,6 @@ angular.module('app.routes', ['ngRoute'])
 			  controller: 'menuEditController',
 			  controllerAs: 'user'
 			})
-			
 			;
 		//set app to have pretty URLS
 		$locationProvider.html5Mode(true);

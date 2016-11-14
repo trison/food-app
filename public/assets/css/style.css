@@ -18,11 +18,38 @@ main {
 .profile-page th{
 	width: 40%;
 }
-.singleMenu-page img{
+
+.form-horizontal{
+
+}
+
+.menu-image{
+	position: relative;
+}
+
+.menu-image img{
 	 width: 50%;
 	 display: block;
 	 margin: 0 auto;
 	 margin-bottom: 5%;
+}
+
+.menu-image .edit-button{
+	height: 75px;
+	width: 75px;
+	background: url(../../img/edit-icon.png);
+	position: absolute;
+	right: 0;
+}
+
+/*img upload*/
+.upload{
+	width:250px;
+	margin: 1% 0 1% 0;
+}
+
+.form-group{
+	display: block;
 }
 
 tr{
@@ -31,6 +58,11 @@ tr{
 
 .page-header{
 	color: white;
+}
+.img-upload{
+	max-width: 750px;
+	margin: 0 auto;
+	margin-bottom: 2%;
 }
 
 .hello{
@@ -48,12 +80,6 @@ tr{
 
 .jumbotron{
 	background-color: rgba(195, 195, 195, 0.8);
-}
-
-/*img upload*/
-.upload{
-	width:250px;
-	margin: 1% 0 1% 0;
 }
 
 .navbar-nav{
