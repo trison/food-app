@@ -191,17 +191,14 @@ angular.module('foodApp', [
 				vm.userData = data;
 			});
 
-		var userId = $routeParams._id;
-		console.log(userId);
-		var menuId = "";
-
 		//create blank menu with user id
 		User.createMenu(vm.menuData)
 			.success(function(data){
 				vm.processing = false;
 				vm.menuData = {};
 				vm.menuData.user_id = $routeParams._id;
-				vm.message = data.message;
+				vm.menuData.img_url = "img/placeholder.png";
+				//vm.message = data.message; //"Menu Validation Failed"??
 			});
 
 		vm.saveMenu = function() {
@@ -215,6 +212,54 @@ angular.module('foodApp', [
 					vm.message = data.message;
 				});
 		};
+
+		//Menu img submit
+		vm.submit = function(){ //function to call on form submit
+			var date = new Date();
+            var month = date.getMonth();
+	        var day = date.getDay();
+	        var year = date.getFullYear();
+
+            var timeStamp = year+month+day;
+            var fullName = vm.file.name;
+			
+            if (vm.upload_form.file.$valid && vm.file) { //check if form is valid
+				var name = fullName.split('.')[0];
+	        	var ext = fullName.split('.')[fullName.split('.').length -1];
+	        	var fileName = name + '-' + timeStamp + '.' + ext;
+
+                vm.upload(vm.file, fileName);
+            }
+        }
+        vm.upload = function (file, fileName) {
+            Upload.upload({
+                url: '/upload', //webAPI exposed to upload the file
+                data:{file:file} //pass file as data, should be user ng-model
+            }).then(function (resp) { //upload function returns a promise
+                if(resp.data.error_code === 0){ //validate success
+                    //$window.alert('Success ' + resp.config.data.file.name + ' uploaded. Response: ');
+                    vm.menuData.img_url = "/img/menus/"+fileName;
+                    User.createMenu($routeParams._id, vm.menuData)
+						.success(function(data) {
+							vm.processing = false;
+							vm.menuData = {};
+							vm.message = data.message;
+						});
+                } else {
+                    //$window.alert('an error occured');
+                    vm.message = "An error occured!";
+                }
+            }, function (resp) { //catch error
+                console.log('Error status: ' + resp.status);
+                //$window.alert('Error status: ' + resp.status);
+                vm.message = "Error status: "+resp.status;
+            }, function (evt) {
+                console.log(evt);
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                //console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+            });
+        };
 	})
 
 	// ********************************************
@@ -239,6 +284,8 @@ angular.module('foodApp', [
 					vm.message = data.message;
 				});
 		};
+
+		//Menu img submit
 		vm.submit = function(){ //function to call on form submit
 			var date = new Date();
             var month = date.getMonth();
@@ -256,7 +303,6 @@ angular.module('foodApp', [
                 vm.upload(vm.file, fileName);
             }
         }
-        
         vm.upload = function (file, fileName) {
             Upload.upload({
                 url: '/upload', //webAPI exposed to upload the file
@@ -265,12 +311,12 @@ angular.module('foodApp', [
                 if(resp.data.error_code === 0){ //validate success
                     //$window.alert('Success ' + resp.config.data.file.name + ' uploaded. Response: ');
                     vm.menuData.img_url = "/img/menus/"+fileName;
-                    User.updateMenu($routeParams._id, vm.menuData)
-						.success(function(data) {
-							vm.processing = false;
-							vm.menuData = {};
-							vm.message = data.message;
-						});
+      //               User.updateMenu($routeParams._id, vm.menuData)
+						// .success(function(data) {
+						// 	vm.processing = false;
+						// 	vm.menuData = {};
+						// 	vm.message = data.message;
+						// });
                 } else {
                     //$window.alert('an error occured');
                     vm.message = "An error occured!";

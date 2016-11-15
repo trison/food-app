@@ -4,10 +4,10 @@
 
 <div class = "jumbotron profile-page">
 	 <table class="table table-bordered table-striped">
- 		<tr>
+ 	<!-- 	<tr>
 			<th>User ID</th>
 			<td>{{ profile.user._id }}</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th>Username</th>
 			<td>{{ profile.user.username }}</td>
@@ -32,26 +32,26 @@
 <table class="table table-bordered table-striped">
 	<thead>
 		<tr>
-			<th>_id</th>
+			<!-- <th>_id</th> -->
 			<th>Name</th>
 			<th>Price</th>
 			<th>Description</th>
-			<th>User Id</th>
+			<!-- <th>User Id</th> -->
 			<th>Prep Time</th>
-			<th>IMG URL</th>
+			<!-- <th>IMG URL</th> -->
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 	    <!-- LOOP OVER THE MENU -->
 		<tr ng-repeat="menu in profile.menus" ng-if="menu.user_id == profile.user._id">
-			<td>{{ menu._id }}</td>
+			<!-- <td>{{ menu._id }}</td> -->
 			<td>{{ menu.name }}</td>
 			<td>${{ menu.price }}</td>
 			<td>{{ menu.description }}</td>
-			<td>{{ menu.user_id }}</td>
+			<!-- <td>{{ menu.user_id }}</td> -->
 			<td>{{ menu.prep_time }}</td>
-			<td>{{ menu.img_url }}</td>
+			<!-- <td>{{ menu.img_url }}</td> -->
 
 			<td class="col-sm-2">
 				<a ng-href="/menu/{{ menu._id }}" class="btn btn-danger">Edit</a>
