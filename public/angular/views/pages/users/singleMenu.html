@@ -9,6 +9,7 @@
 			<img ng-src="{{ user.menuData.img_url }}"/>
 			<div class="edit-button"></div>
 		</div>
+
 		<div class="form-container">
 
 		<div class="form-group">
@@ -66,19 +67,20 @@
 				<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'edit'">Update Menu</button>
 			</div>
 		</div>
-		</div>
-	</form>
-	
-	<div class="row show-hide-message" ng-show="user.message">
-		<div class="col-sm-6 col-sm-offset-2">
-			<div class="alert alert-info">
-				{{ user.message }}
-				<br><br><a href="/profile">Back to Profile</a>
+
+		<div class="row show-hide-message" ng-show="user.message">
+			<div class="col-sm-6 col-sm-offset-2">
+				<div class="alert alert-info">
+					{{ user.message }}
+					<br><br><a href="/profile">Back to Profile</a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="img-upload jumbotron" ng-if="!user.menuData.img_url">
+		</div>
+	</form>
+
+	<div class="img-upload jumbotron">
 	<h1>Image Upload</h1>
 	        <form name="user.upload_form">
 	            <input
@@ -98,6 +100,5 @@
 	            <p>{{user.progress}}
 	        </form>
 	</div>
-	
 	
 </div>

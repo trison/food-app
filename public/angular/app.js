@@ -102,7 +102,6 @@ angular.module('foodApp', [
 		// get menus on page load
 		User.menus().success(function(data) {
 			vm.processing = false;
-
 			vm.menus = data;
 		});
 
@@ -187,10 +186,23 @@ angular.module('foodApp', [
 		var vm = this;
 		vm.type = 'create';
 
-		// User.get($routeParams.user_id)
-		// 	.success(function(data) {
-		// 		vm.userData = data;
-		// 	});
+		User.get($routeParams._id)
+			.success(function(data) {
+				vm.userData = data;
+			});
+
+		var userId = $routeParams._id;
+		console.log(userId);
+		var menuId = "";
+
+		//create blank menu with user id
+		User.createMenu(vm.menuData)
+			.success(function(data){
+				vm.processing = false;
+				vm.menuData = {};
+				vm.menuData.user_id = $routeParams._id;
+				vm.message = data.message;
+			});
 
 		vm.saveMenu = function() {
 			vm.processing = true;
@@ -328,7 +340,6 @@ angular.module('foodApp', [
 	})
 
 	.config(function($httpProvider){
-
         $httpProvider.interceptors.push('AuthInterceptor');
     });
 ;

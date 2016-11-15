@@ -53,12 +53,12 @@ angular.module('app.routes', ['ngRoute'])
 			  controller: 'profileController',
 			  controllerAs: 'profile'
 			})
-			.when('/menu/create', {
+			.when('/menu/add/:_id', {
 			  templateUrl: 'angular/views/pages/users/singleMenu.html',
 			  controller: 'menuCreateController',
 			  controllerAs: 'user'
 			})
-			.when('/menu/:_id', {
+			.when('/menu/:_id', {//passing in menu _id
 			  templateUrl: 'angular/views/pages/users/singleMenu.html',
 			  controller: 'menuEditController',
 			  controllerAs: 'user'
