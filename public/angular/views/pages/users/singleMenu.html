@@ -17,7 +17,7 @@
 		<div class="row">
 			<div class="col-sm-3"></div>
 			<div class="img-upload col-sm-6">
-				<h2>Image Upload</h2>
+				<h3>Image Upload</h3>
 		        <form name="user.upload_form">
 		            <input
 		               type="file"
@@ -34,15 +34,15 @@
 		            {{user.file.size / 1000000|number:1}}MB: max 10M</i>
 		            <button type="submit" ng-if="user.type == 'create'" class="btn btn-success btn-lg btn-block btn-img-upload" ng-click="user.submit()">Upload Image</button>
 		            <button type="submit" ng-if="user.type == 'edit'" class="btn btn-success btn-lg btn-block btn-img-upload" ng-click="user.submit()">Change Image</button>
-		            
+
 		            <!-- LOADING MESSAGE -->
 					<div class="jumbotron text-center" ng-show="user.processing">
-						<span class="glyphicon glyphicon-repeat spinner"></span> <p>Loading ...</p>
+						<span class="glyphicon glyphicon-repeat spinner"></span> <p>Loading...</p>
 					</div>
 
 		            <p>{{user.progress}}
 		        </form>
-				<img ng-src="{{ user.menuData.img_url }}"/>
+				<img class="upload" ng-src="{{ user.menuData.img_url }}"/>
 			</div>
 			<div class="col-sm-3"></div>
 		</div>
@@ -68,38 +68,38 @@
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Name *</label>
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<input type="text" class="form-control" ng-model="user.menuData.name">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Price</label>
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<input type="text" class="form-control" ng-model="user.menuData.price">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Description</label>
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<input type="text" class="form-control" ng-model="user.menuData.description">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Prep Time</label>
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<input type="text" class="form-control" ng-model="user.menuData.prep_time">
 					</div>
 				</div>
 
-				<div class="form-group">
+			<!-- 	<div class="form-group">
 					<label class="col-sm-2 control-label">Img URL</label>
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<input type="text" class="form-control" ng-model="user.menuData.img_url">
 					</div>
-				</div>
+				</div> -->
 				
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-6">

@@ -21,7 +21,7 @@
 			<td>{{ profile.user.email }}</td>
 		</tr>
 	</table>
-	<a ng-href="/users/{{ profile.user._id }}" class="btn btn-danger">Edit</a>
+	<a ng-href="/users/{{ profile.user._id }}" class="btn btn-primary">Edit</a>
 </div>
 
 <div class="page-header">
@@ -54,8 +54,8 @@
 			<!-- <td>{{ menu.img_url }}</td> -->
 
 			<td class="col-sm-2">
-				<a ng-href="/menu/{{ menu._id }}" class="btn btn-danger">Edit</a>
-				<a href="#" ng-click="profile.deleteMenu(menu._id)" class="btn btn-primary">Delete</a>
+				<a ng-href="/menu/{{ menu._id }}" class="btn btn-primary">Edit</a>
+				<a href="#" ng-click="profile.deleteMenu(menu._id)" class="btn btn-danger">Delete</a>
 			</td>
 		</tr>
   	</tbody>
