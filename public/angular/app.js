@@ -366,9 +366,29 @@ angular.module('foodApp', [
 	})
 	// ********************************************
 	// ORDERS CONTROLLER
-	.controller('orderController', function(){
+	.controller('orderController', function(User, $window, $route){
 		var vm = this;
+		vm.processing = false;
 		vm.message = 'ORDERS PAGE!!';
+
+		User.getOrders()
+			.success(function(orders) {
+				vm.orders = orders;
+			});
+
+		vm.deleteOrder = function(orderId){
+			vm.processing = true;
+
+			User.deleteOrder(orderId)
+				.success(function(data) {
+
+				User.getOrders()
+					.success(function(data){
+						vm.processing = false;
+						vm.orders = data;
+				});
+			});
+		};
 	})
 
 	// ********************************************

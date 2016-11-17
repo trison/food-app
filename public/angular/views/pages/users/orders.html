@@ -1,8 +1,11 @@
 <div class="page-header">
-	<h1>Incoming Orders</h1>
+	<h1>Incoming Orders :)</h1>
 </div>
 
-<h1 style="color:white;">no orders yet... :(</h1>
+<!-- LOADING MESSAGE -->
+<div class="jumbotron text-center" ng-show="order.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span> <p>Loading Orders...</p>
+</div>
 
 <div class="form-horizontal jumbotron">
 	<table class="table table-bordered table-striped">
@@ -11,6 +14,7 @@
 				<th>Name</th>
 				<th>Customer ID</th>
 				<th>Menu ID</th>
+				<th>Time Placed</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -18,11 +22,12 @@
 		    <!-- LOOP OVER THE MENU -->
 			<tr ng-repeat="item in order.orders">
 				<td>{{ item.name }}</td>
-				<td>${{ item.customer_id }}</td>
+				<td>{{ item.customer_id }}</td>
 				<td>{{ item.menu_id }}</td>
+				<td>{{ item.time_placed }}</td>
 				<td class="col-sm-2">
-					<a ng-href="/menu/{{ item._id }}" class="btn btn-primary">Edit</a>
-					<a href="#" ng-click="profile.deleteMenu(menu._id)" class="btn btn-danger">Delete</a>
+					<!-- <a ng-href="/orders/{{ item._id }}" class="btn btn-primary">View</a> -->
+					<a href="#" ng-click="order.deleteOrder(item._id)" class="btn btn-danger">Remove</a>
 				</td>
 			</tr>
 	  	</tbody>

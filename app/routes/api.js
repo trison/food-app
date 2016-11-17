@@ -178,6 +178,7 @@ module.exports = function(app, express) {
     order.name = req.body.name;
     order.customer_id = req.body.customer_id;
     order.menu_id = req.body.customer_id;
+    order.time_placed = req.body.time_placed;
 
     //save order and check for errors
     order.save(function(err) {
@@ -192,7 +193,7 @@ module.exports = function(app, express) {
     });
   });
 
-   apiRouter.route('/orders/')
+  apiRouter.route('/orders/')
     .get(function(req, res){
       Order.find(function(err, order) {
         if(err) res.send(err);
@@ -200,6 +201,16 @@ module.exports = function(app, express) {
         //return order
         res.json(order);  
       });
+    });
+
+  apiRouter.route('/orders/:_id')
+    .delete(function(req, res) {
+      Order.remove(
+        { _id: req.params._id },
+        function(err, menu){
+          if(err) return res.send(err);
+          res.json({ message: 'Successfully deleted order item' });
+        });
     });
 
   // ************** MIDDLEWARE for requests

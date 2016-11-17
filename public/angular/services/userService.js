@@ -69,5 +69,10 @@ angular.module('userService', [])
 			return $http.get('api/orders/');
 		};
 
+		userFactory.deleteOrder = function(orderId){
+			return $http.delete('/api/orders/'+orderId);
+		};
+
+
 		return userFactory;
 	});
