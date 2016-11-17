@@ -1,6 +1,7 @@
 var User = require('../models/user');
 var Img = require('../models/img');
 var Menu = require('../models/menu');
+var Order = require('../models/order');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
 var fs = require('fs');
@@ -170,7 +171,36 @@ module.exports = function(app, express) {
     //   });
     // });
 
-    
+  apiRouter.post('/orders/', function(req, res){
+    var order = new Order();
+
+    //set order info (from request)
+    order.name = req.body.name;
+    order.customer_id = req.body.customer_id;
+    order.menu_id = req.body.customer_id;
+
+    //save order and check for errors
+    order.save(function(err) {
+      if(err) {
+        //duplicate entry
+        if(err.code == 11000)
+          return res.json({ success: false, message: 'An order with that name already exists. '});
+        else
+          return res.send(err);
+      }
+      res.json({ message: 'Order added! '+req.body });
+    });
+  });
+
+   apiRouter.route('/orders/')
+    .get(function(req, res){
+      Order.find(function(err, order) {
+        if(err) res.send(err);
+        
+        //return order
+        res.json(order);  
+      });
+    });
 
   // ************** MIDDLEWARE for requests
   apiRouter.use(function(req, res, next) {
@@ -255,7 +285,7 @@ module.exports = function(app, express) {
         { _id: req.params.user_id },
         function(err, user){
           if(err) return res.send(err);
-          res.json({ message: 'Succesfully deleted' });
+          res.json({ message: 'Successfully deleted' });
         });
     });
 

@@ -1,0 +1,30 @@
+<div class="page-header">
+	<h1>Incoming Orders</h1>
+</div>
+
+<h1 style="color:white;">no orders yet... :(</h1>
+
+<div class="form-horizontal jumbotron">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Customer ID</th>
+				<th>Menu ID</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		    <!-- LOOP OVER THE MENU -->
+			<tr ng-repeat="item in order.orders">
+				<td>{{ item.name }}</td>
+				<td>${{ item.customer_id }}</td>
+				<td>{{ item.menu_id }}</td>
+				<td class="col-sm-2">
+					<a ng-href="/menu/{{ item._id }}" class="btn btn-primary">Edit</a>
+					<a href="#" ng-click="profile.deleteMenu(menu._id)" class="btn btn-danger">Delete</a>
+				</td>
+			</tr>
+	  	</tbody>
+	</table>
+</div>

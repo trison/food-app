@@ -364,6 +364,12 @@ angular.module('foodApp', [
 			});
 		};
 	})
+	// ********************************************
+	// ORDERS CONTROLLER
+	.controller('orderController', function(){
+		var vm = this;
+		vm.message = 'ORDERS PAGE!!';
+	})
 
 	// ********************************************
 	// HOME CONTROLLER

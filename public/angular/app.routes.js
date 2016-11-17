@@ -63,6 +63,11 @@ angular.module('app.routes', ['ngRoute'])
 			  controller: 'menuEditController',
 			  controllerAs: 'user'
 			})
+			.when('/orders', {//passing in menu _id
+			  templateUrl: 'angular/views/pages/users/orders.html',
+			  controller: 'orderController',
+			  controllerAs: 'order'
+			})
 			;
 		//set app to have pretty URLS
 		$locationProvider.html5Mode(true);

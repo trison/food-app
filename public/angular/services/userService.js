@@ -3,6 +3,7 @@ angular.module('userService', [])
 		//create object
 		var userFactory = {};
 
+		// ========== USERS ===================
 		//GET a single user
 		userFactory.get = function(id) {
 			return $http.get('/api/users/'+id);
@@ -32,6 +33,7 @@ angular.module('userService', [])
 			return $http.delete('/api/users/'+id);
 		};
 
+		// ========== MENUS ===================
 		//Get all the menus
 		userFactory.menus = function(){
 			return $http.get('api/menu/');
@@ -60,6 +62,11 @@ angular.module('userService', [])
 		//DELETE a menu item
 		userFactory.deleteMenu = function(menuId){
 			return $http.delete('/api/menu/'+menuId);
+		};
+
+		// ========== ORDERS ===================
+		userFactory.getOrders = function(){
+			return $http.get('api/orders/');
 		};
 
 		return userFactory;
