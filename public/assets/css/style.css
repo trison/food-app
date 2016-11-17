@@ -97,6 +97,9 @@ tr{
 	-moz-animation: fadeOut 0.25s both ease-in;
 	animation: fadeOut 0.25s both ease-in;
 }*/
+.show-hide-message{
+	text-align: center;
+}
 .show-hide-message.ng-hide-remove{
 	-webkit-animation: zoomIn 0.25s both ease;
 	-moz-animation: zoomIn 0.25s both ease;

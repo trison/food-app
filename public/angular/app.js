@@ -283,6 +283,7 @@ angular.module('foodApp', [
 					vm.menuData = {};
 					vm.message = data.message;
 				});
+			$window.scrollTo(0,0);
 		};
 
 		//Menu img submit

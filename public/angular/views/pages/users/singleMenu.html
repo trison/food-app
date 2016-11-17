@@ -4,11 +4,13 @@
 		<h1 ng-if="user.type == 'edit'">Edit Menu</h1>
 	</div>
 
-	<div class="row show-hide-message" ng-show="user.message">
-		<div class="col-sm-6 col-sm-offset-2">
-			<div class="alert alert-info">
-				{{ user.message }}
-				<br><br><a href="/profile">Back to Profile</a>
+	<div class="row">
+		<div class="show-hide-message" ng-show="user.message">
+			<div class="col-sm-8 col-sm-offset-2">
+				<div class="alert alert-info">
+					{{ user.message }}
+					<br><br><a href="/profile">Back to Profile</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -32,8 +34,8 @@
 		            <i ng-show="user.upload_form.file.$error.required">*required</i><br>
 		            <i ng-show="user.upload_form.file.$error.maxSize">File too large 
 		            {{user.file.size / 1000000|number:1}}MB: max 10M</i>
-		            <button type="submit" ng-if="user.type == 'create'" class="btn btn-success btn-lg btn-block btn-img-upload" ng-click="user.submit()">Upload Image</button>
-		            <button type="submit" ng-if="user.type == 'edit'" class="btn btn-success btn-lg btn-block btn-img-upload" ng-click="user.submit()">Change Image</button>
+		            <button type="submit" ng-if="user.type == 'create'" ng-show="user.file" class="btn btn-success btn-lg btn-block btn-img-upload" ng-click="user.submit()">Upload Image</button>
+		            <button type="submit" ng-if="user.type == 'edit'" ng-show="user.file" class="btn btn-success btn-lg btn-block btn-img-upload" ng-click="user.submit()">Change Image</button>
 
 		            <!-- LOADING MESSAGE -->
 					<div class="jumbotron text-center" ng-show="user.processing">
@@ -42,7 +44,7 @@
 
 		            <p>{{user.progress}}
 		        </form>
-				<img class="upload" ng-src="{{ user.menuData.img_url }}"/>
+				<img class="upload col-sm-offset-2" ng-src="{{ user.menuData.img_url }}"/>
 			</div>
 			<div class="col-sm-3"></div>
 		</div>
@@ -102,7 +104,7 @@
 				</div> -->
 				
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-6">
+					<div class="col-sm-offset-2 col-sm-8">
 						<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'create'">Create Menu</button>
 						<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'edit'">Update Menu</button>
 					</div>
