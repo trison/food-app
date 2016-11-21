@@ -13,7 +13,6 @@ var superSecret = config.secret;
 var User = require('./app/models/user');
 var Img = require('./app/models/img');
 var Menu = require('./app/models/menu');
-
 var fs = require('fs');
 
 mongoose.connect(config.database)
@@ -49,7 +48,7 @@ var storage = multer.diskStorage({
 //multer instance
 var upload = multer({ storage: storage }).single('file');
 
-/** API path that will upload the files */
+/** API path for uploading */
 app.post('/upload', function(req, res) {
 	upload(req,res,function(err){
 	    if(err){
@@ -61,7 +60,7 @@ app.post('/upload', function(req, res) {
 	})
 });
 
-//configure app to handle CORS requests
+//==== CONFIGURE APP FOR CORS requests ===============
 app.use(function(req, res, next){
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
@@ -69,7 +68,7 @@ app.use(function(req, res, next){
 	next();
 });
 
-// ROUTES ===================================
+// ROUTES ===========================================
 // API ROUTES ------------------------
 var apiRoutes = require('./app/routes/api')(app, express);
 app.use('/api', apiRoutes);

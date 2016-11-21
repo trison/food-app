@@ -233,7 +233,7 @@ angular.module('foodApp', [
         }
         vm.upload = function (file, fileName) {
             Upload.upload({
-                url: '/upload', //webAPI exposed to upload the file
+                url: '/api/upload', //webAPI exposed to upload the file
                 data:{file:file} //pass file as data, should be user ng-model
             }).then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){ //validate success
@@ -306,7 +306,7 @@ angular.module('foodApp', [
         }
         vm.upload = function (file, fileName) {
             Upload.upload({
-                url: '/upload', //webAPI exposed to upload the file
+                url: '/api/upload', //webAPI exposed to upload the file
                 data:{file:file} //pass file as data, should be user ng-model
             }).then(function (resp) { //upload function returns a promise
                 if(resp.data.error_code === 0){ //validate success
@@ -366,10 +366,23 @@ angular.module('foodApp', [
 	})
 	// ********************************************
 	// ORDERS CONTROLLER
-	.controller('orderController', function(User, $window, $route){
+	.controller('orderController', function(Auth, User, $window, $route){
 		var vm = this;
 		vm.processing = false;
 		vm.message = 'ORDERS PAGE!!';
+
+		Auth.getUser()
+			.then(function(data){
+				vm.user = data.data;
+		});
+
+  		vm.propertyName = 'name';
+  		vm.reverse = true;
+
+  		vm.sortBy = function(propertyName){
+  			vm.reverse = (vm.propertyName === propertyName) ? !vm.reverse : false;
+  			vm.propertyName = propertyName;
+  		};
 
 		User.getOrders()
 			.success(function(orders) {

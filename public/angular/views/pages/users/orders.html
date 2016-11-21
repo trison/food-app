@@ -11,7 +11,10 @@
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th>Name</th>
+				<th>Name
+					<button ng-click="sortBy('name')">Name</button>
+       				 <span ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span>
+       			</th>
 				<th>Customer ID</th>
 				<th>Menu ID</th>
 				<th>Time Placed</th>
@@ -20,7 +23,7 @@
 		</thead>
 		<tbody>
 		    <!-- LOOP OVER THE MENU -->
-			<tr ng-repeat="item in order.orders">
+			<tr ng-repeat="item in order.orders | orderBy">
 				<td>{{ item.name }}</td>
 				<td>{{ item.customer_id }}</td>
 				<td>{{ item.menu_id }}</td>
