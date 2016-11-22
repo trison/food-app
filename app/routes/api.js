@@ -2,6 +2,7 @@ var User = require('../models/user');
 var Img = require('../models/img');
 var Menu = require('../models/menu');
 var Order = require('../models/order');
+var Customer = require('../models/customer');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
 var fs = require('fs');
@@ -123,6 +124,8 @@ module.exports = function(app, express) {
       });
     });
 
+
+  // ============ MENU =========================
   //POST menu at /api/menu
   apiRouter.post('/menu/', function(req, res) {
     //create new instance of Menu model
@@ -159,18 +162,8 @@ module.exports = function(app, express) {
         res.json(menu);  
       });
     });
-
-    //GET that user's menu
-    // apiRouter.route('/menu/:user_id')
-    // .get(function(req, res){
-    //   Menu.find( { user_id: req.params.user_id }, function(err, menu) {
-    //     if(err) res.send(err);
-
-    //     //return that menu
-    //     res.json(menu);
-    //   });
-    // });
-
+  
+  // ========== ORDERS ==========================
   apiRouter.post('/orders/', function(req, res){
     var order = new Order();
 
@@ -212,6 +205,28 @@ module.exports = function(app, express) {
           res.json({ message: 'Successfully deleted order item' });
         });
     });
+
+    // ===================== CUSTOMER ======================
+    apiRouter.route('/customers/')
+    .get(function(req, res){
+      Customer.find(function(err, customers) {
+        if(err) res.send(err);
+        
+        //return order
+        res.json(customers);  
+      });
+    });
+
+    apiRouter.route('/customers/:_id')
+    .get(function(req, res) {
+      Menu.findById(req.params._id, function(err, customer) {
+        if(err) res.send(err);
+
+        //return that menu
+        res.json(customer);
+      });
+    })
+
 
   // ************** MIDDLEWARE for requests
   apiRouter.use(function(req, res, next) {

@@ -94,7 +94,6 @@ angular.module('foodApp', [
 		User.all().success(function(data) {
 		    // remove processing var when users come
 			vm.processing = false;
-
 			// bind the users to vm.users
 			vm.users = data;
 		});
@@ -110,9 +109,6 @@ angular.module('foodApp', [
 			
 			User.delete(id)
 				.success(function(data) {
-				// get all users to update the table
-				// you can also set up your api
-				// to return the list of users with the delete call User.all()
 				User.all()
 					.success(function(data){
 						vm.processing = false;
@@ -312,12 +308,6 @@ angular.module('foodApp', [
                 if(resp.data.error_code === 0){ //validate success
                     //$window.alert('Success ' + resp.config.data.file.name + ' uploaded. Response: ');
                     vm.menuData.img_url = "/img/menus/"+fileName;
-      //               User.updateMenu($routeParams._id, vm.menuData)
-						// .success(function(data) {
-						// 	vm.processing = false;
-						// 	vm.menuData = {};
-						// 	vm.message = data.message;
-						// });
                 } else {
                     //$window.alert('an error occured');
                     vm.message = "An error occured!";

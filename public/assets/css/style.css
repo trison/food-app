@@ -15,6 +15,45 @@ main {
 	padding-top: 30px;
 }
 
+.page-header{
+	color: white;
+}
+
+.hello{
+	font-size: 3em;
+	font-weight: bold;
+	color: white;
+	padding: 15px 0 10px 0;
+	line-height: 20px;
+	text-align: center;
+}
+
+#content-views {
+	position: relative;
+}
+
+.jumbotron{
+	background-color: rgba(195, 195, 195, 0.8);
+}
+
+.btn-primary, .btn-danger{
+	margin-top: 1%;
+}
+
+.btn-img-upload{
+	background-color: rgba(150, 150, 150, 1);
+	border: 1px solid rgba(150, 150, 150, 1);
+}
+.btn-img-upload:hover{
+	background-color: rgba(130, 130, 130, 1);
+	border: 1px solid rgba(130, 130, 130, 1);
+}
+
+tr{
+	background-color: rgba(190, 190, 190, 0.7);
+}
+
+/*========== PROFILE & MENU PAGEs ==========*/
 .profile-page th{
 	width: 40%;
 }
@@ -46,43 +85,6 @@ main {
 	border-radius: 10px;
 }
 
-.btn-img-upload{
-	background-color: rgba(150, 150, 150, 1);
-	border: 1px solid rgba(150, 150, 150, 1);
-}
-.btn-img-upload:hover{
-	background-color: rgba(130, 130, 130, 1);
-	border: 1px solid rgba(130, 130, 130, 1);
-}
-
-tr{
-	background-color: rgba(190, 190, 190, 0.7);
-}
-
-.page-header{
-	color: white;
-}
-
-.hello{
-	font-size: 3em;
-	font-weight: bold;
-	color: white;
-	padding: 15px 0 10px 0;
-	line-height: 20px;
-	text-align: center;
-}
-
-#content-views {
-	position: relative;
-}
-
-.jumbotron{
-	background-color: rgba(195, 195, 195, 0.8);
-}
-
-.btn-primary, .btn-danger{
-	margin-top: 1%;
-}
 /*.ng-enter, .ng-leave{
 	width: 100%;
 	position: absolute;
