@@ -52,4 +52,14 @@
 	</div>
 </div>
 
+<div class="row show-hide-message" ng-show="user.deleteMessage">
+	<div class="col-sm-6 col-sm-offset-2">
+		
+		<div class="alert alert-info">
+			{{ user.deleteMessage }}
+			<br><br><a href="/login">Login Page</a>
+		</div>
+	</div>
+</div>
+<a href="#" ng-click="user.deleteUser(user.userData._id)" class="btn btn-danger">Delete User</a>
 

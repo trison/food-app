@@ -106,6 +106,7 @@ angular.module('foodApp', [
 
 		vm.deleteUser = function(id) {
 			vm.processing = true;
+			//need to add menu deletion
 			
 			User.delete(id)
 				.success(function(data) {
@@ -163,6 +164,46 @@ angular.module('foodApp', [
 				vm.userData = data;
 			});
 
+		// get menus on page load
+		User.menus().success(function(data) {
+			vm.processing = false;
+			vm.menus = data;
+		});
+
+		vm.deleteUser = function(id){
+			vm.processing = true;
+
+			//delete user's menus
+			vm.menus.forEach(function(data){
+				if(vm.userData._id == data.user_id){
+					console.log(data.user_id);
+					console.log(vm.userData);
+
+					User.deleteMenu(data._id)
+						.success(function(data) {
+
+						User.menus()
+							.success(function(data){
+								vm.processing = false;
+								vm.menus = data;
+						});
+					});
+				}
+			});
+
+			//delete user
+			User.delete(vm.userData._id)
+				.success(function(data) {
+					User.all()
+						.success(function(data){
+							vm.processing = false;
+							vm.users = data;
+				});
+			});
+
+			vm.deleteMessage = "User deleted!";
+		};
+
 		vm.saveUser = function() {
 			vm.processing = true;
 			vm.message = '';
@@ -173,6 +214,20 @@ angular.module('foodApp', [
 					vm.userData = {};
 					vm.message = data.message;
 				});
+		};
+
+		vm.deleteMenu = function(menuId){
+			vm.processing = true;
+
+			User.deleteMenu(menuId)
+				.success(function(data) {
+
+				User.menus()
+					.success(function(data){
+						vm.processing = false;
+						vm.menus = data;
+				});
+			});
 		};
 	})
 

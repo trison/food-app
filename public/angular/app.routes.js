@@ -63,7 +63,7 @@ angular.module('app.routes', ['ngRoute'])
 			  controller: 'menuEditController',
 			  controllerAs: 'user'
 			})
-			.when('/orders', {//passing in menu _id
+			.when('/orders', {
 			  templateUrl: 'angular/views/pages/users/orders.html',
 			  controller: 'orderController',
 			  controllerAs: 'order'

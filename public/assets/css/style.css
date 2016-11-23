@@ -120,7 +120,7 @@ tr{
 	animation: zoomIn 0.25s both ease;
 }
 
-/* ANIMATIONS ====================== */ 
+/* =========== ANIMATIONS =================== */ 
 .spinner {
      animation: spin 1s infinite;
      -webkit-animation: spin 1s infinite;

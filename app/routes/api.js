@@ -156,10 +156,9 @@ module.exports = function(app, express) {
   apiRouter.route('/menu/')
     .get(function(req, res){
       Menu.find(function(err, menu) {
-        if(err) res.send(err);
-        
-        //return menu
-        res.json(menu);  
+        if(err) res.send(err);     
+          //return menu
+          res.json(menu);  
       });
     });
   
@@ -176,8 +175,7 @@ module.exports = function(app, express) {
     //save order and check for errors
     order.save(function(err) {
       if(err) {
-        //duplicate entry
-        if(err.code == 11000)
+        if(err.code == 11000)//duplicate entry
           return res.json({ success: false, message: 'An order with that name already exists. '});
         else
           return res.send(err);
@@ -190,9 +188,7 @@ module.exports = function(app, express) {
     .get(function(req, res){
       Order.find(function(err, order) {
         if(err) res.send(err);
-        
-        //return order
-        res.json(order);  
+          res.json(order);  
       });
     });
 
@@ -211,9 +207,7 @@ module.exports = function(app, express) {
     .get(function(req, res){
       Customer.find(function(err, customers) {
         if(err) res.send(err);
-        
-        //return order
-        res.json(customers);  
+          res.json(customers);  
       });
     });
 
@@ -221,9 +215,7 @@ module.exports = function(app, express) {
     .get(function(req, res) {
       Menu.findById(req.params._id, function(err, customer) {
         if(err) res.send(err);
-
-        //return that menu
-        res.json(customer);
+          res.json(customer);
       });
     })
 
