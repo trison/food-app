@@ -176,9 +176,6 @@ angular.module('foodApp', [
 			//delete user's menus
 			vm.menus.forEach(function(data){
 				if(vm.userData._id == data.user_id){
-					console.log(data.user_id);
-					console.log(vm.userData);
-
 					User.deleteMenu(data._id)
 						.success(function(data) {
 
@@ -186,8 +183,8 @@ angular.module('foodApp', [
 							.success(function(data){
 								vm.processing = false;
 								vm.menus = data;
+							});
 						});
-					});
 				}
 			});
 
@@ -198,7 +195,7 @@ angular.module('foodApp', [
 						.success(function(data){
 							vm.processing = false;
 							vm.users = data;
-				});
+						});
 			});
 
 			vm.deleteMessage = "User deleted!";
@@ -378,6 +375,8 @@ angular.module('foodApp', [
                 vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
             });
         };
+
+
 	})
 
 	// ********************************************

@@ -23,7 +23,7 @@
 		</thead>
 		<tbody>
 		    <!-- LOOP OVER THE MENU -->
-			<tr ng-repeat="item in order.orders | orderBy">
+			<tr ng-repeat="item in order.orders | orderBy" >
 				<!--  ng-if="item.customer_id == order.user._id" -->
 				<td>{{ item.name }}</td>
 				<td>{{ item.customer_id }}</td>

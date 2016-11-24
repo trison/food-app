@@ -32,6 +32,7 @@
 <table class="table table-bordered table-striped">
 	<thead>
 		<tr>
+			<th></th>
 			<!-- <th>_id</th> -->
 			<th>Name</th>
 			<th>Price</th>
@@ -45,6 +46,7 @@
 	<tbody>
 	    <!-- LOOP OVER THE MENU -->
 		<tr ng-repeat="menu in profile.menus" ng-if="menu.user_id == profile.user._id">
+			<td><img class="menu-thumb" src="{{ menu.img_url }}"></td>
 			<!-- <td>{{ menu._id }}</td> -->
 			<td>{{ menu.name }}</td>
 			<td>${{ menu.price }}</td>
@@ -64,10 +66,6 @@
 	<span class="glyphicon glyphicon-plus"></span>Add
 </a>
 </div>
-
-
-
-
 
 
 

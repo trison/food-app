@@ -48,16 +48,18 @@ var storage = multer.diskStorage({
 //multer instance
 var upload = multer({ storage: storage }).single('file');
 
-/** API path for uploading */
-app.post('/upload', function(req, res) {
-	upload(req,res,function(err){
-	    if(err){
-	         res.json({error_code:1,err_desc:err});
-	         return;
-	    }
-	    console.log(req)
-	    res.json({error_code:0,err_desc:null});
-	})
+// ================= FILE DELETION ====================== 
+fs.stat(__dirname+'/public/img/placeholder.png', function (err, stats) {
+   console.log(stats);//here we got all information of file in stats variable
+
+   if (err) {
+       return console.error(err);
+   }
+
+   // fs.unlink(__dirname+'/public/img/placeholder.png',function(err){
+   //      if(err) return console.log(err);
+   //      console.log('file deleted successfully');
+   // });  
 });
 
 //==== CONFIGURE APP FOR CORS requests ===============
@@ -72,6 +74,18 @@ app.use(function(req, res, next){
 // API ROUTES ------------------------
 var apiRoutes = require('./app/routes/api')(app, express);
 app.use('/api', apiRoutes);
+
+// API path for uploading -----------
+app.post('/api/upload', function(req, res) {
+	upload(req,res,function(err){
+	    if(err){
+	         res.json({error_code:1,err_desc:err});
+	         return;
+	    }
+	    console.log(req)
+	    res.json({error_code:0,err_desc:null});
+	})
+});
 
 // MAIN CATCHALL ROUTE ---------------
 //set up route to index.html file whenever get a request to server (* is wildcard)
