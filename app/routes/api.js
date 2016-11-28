@@ -137,6 +137,10 @@ module.exports = function(app, express) {
     menu.prep_time = req.body.prep_time;
     menu.user_id = req.body.user_id;
     menu.img_url = req.body.img_url;
+    menu.gf = req.body.gf;
+    menu.df = req.body.gf;
+    menu.nuts = req.body.nuts;
+    menu.vegetarian = req.body.vegetarian;
 
     //save menu and check for errors
     menu.save(function(err) {
