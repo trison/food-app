@@ -44,7 +44,6 @@ module.exports = function(app, express) {
               name: user.name,
               username: user.username,
               email: user.email
-              //menu: user.menu
             },
             superSecret, {
               expiresIn: 1440 //24hrs
@@ -120,7 +119,7 @@ module.exports = function(app, express) {
         if(err) res.send(err);
         
         //return images
-        res.json(imgs);  
+        res.json(imgs);
       });
     });
 
@@ -158,7 +157,7 @@ module.exports = function(app, express) {
       Menu.find(function(err, menu) {
         if(err) res.send(err);     
           //return menu
-          res.json(menu);  
+          res.json(menu);
       });
     });
   
@@ -188,7 +187,7 @@ module.exports = function(app, express) {
     .get(function(req, res){
       Order.find(function(err, order) {
         if(err) res.send(err);
-          res.json(order);  
+          res.json(order);
       });
     });
 

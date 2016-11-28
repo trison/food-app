@@ -24,6 +24,10 @@ angular.module('foodApp', [
 			Auth.getUser()
 				.then(function(data){
 					vm.user = data.data;
+					if(vm.user.username == "admin")
+						vm.isAdmin = true;
+					else
+						vm.isAdmin = false;
 			});
 		});
 
