@@ -8,10 +8,10 @@ var MenuSchema = new Schema({
 	prep_time: { type: String },
 	user_id: { type: String },
 	img_url: { type: String },
-	gf: { type: Boolean },
-	df: { type: Boolean },
-	nuts: { type: Boolean },
-	vegetarian: { type: Boolean }
+	gf: { type: String, default: "false" },
+	df: { type: String, default: "false" },
+	nuts: { type: String, default: "false" },
+	vegetarian: { type: String, default: "false" }
 });
 
 module.exports = mongoose.model('Menu', MenuSchema);

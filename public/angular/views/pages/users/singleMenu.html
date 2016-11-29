@@ -28,12 +28,12 @@
 		               name="file"
 		               ngf-pattern="'image/*'"
 		               accept="image/*"
-		               ngf-max-size="10MB"
+		               ngf-max-size="1.2MB"
 		               />
 		            <img class="upload" ngf-thumbnail="user.file" ng-if="!user.progress"/>
 		            <i ng-show="user.upload_form.file.$error.required">*required</i><br>
 		            <i ng-show="user.upload_form.file.$error.maxSize">File too large 
-		            {{user.file.size / 1000000|number:1}}MB: max 10M</i>
+		            {{user.file.size / 1000000|number:1}}MB: max 1.2M</i>
 		            <button type="submit" ng-if="user.type == 'create'" ng-show="user.file" class="btn btn-success btn-lg btn-block btn-img-upload" ng-click="user.submit()">Upload Image</button>
 		            <button type="submit" ng-if="user.type == 'edit'" ng-show="user.file" class="btn btn-success btn-lg btn-block btn-img-upload" ng-click="user.submit()">Change Image</button>
 
@@ -101,6 +101,45 @@
 						<input type="text" class="form-control" ng-model="user.menuData.img_url">
 					</div>
 				</div> -->
+
+				<div class="form-group">
+					<div class="col-sm-2 control-label"></div>
+					<div class="col-sm-10">
+						<label class="diet-checkbox">Gluten Free:
+							<input type="checkbox" 
+							ng-model="user.menuData.gf"
+							ng-checked="user.menuData.gf=='true'" 
+							ng-click="user.change(user.menuData.gf, 'g')">
+						</label>
+						
+						<label class="diet-checkbox">Dairy Free: 
+							<input type="checkbox" 
+							ng-model="user.menuData.df" 
+							ng-checked="user.menuData.df=='true'" 
+							ng-click="user.change(user.menuData.df, 'd')">
+						</label>
+						
+						<label class="diet-checkbox">Contains Nuts:
+							<input type="checkbox" 
+							ng-model="user.menuData.nuts"
+							ng-checked="user.menuData.nuts=='true'" 
+							ng-click="user.change(user.menuData.nuts, 'n')">
+						</label>
+
+						<label class="diet-checkbox">Vegetarian:
+							<input type="checkbox" 
+							ng-model="user.menuData.vegetarian"
+							ng-checked="user.menuData.vegetarian=='true'" 
+							ng-click="user.change(user.menuData.vegetarian, 'v')"
+							>
+						</label>
+					</div>
+				</div>
+
+				  GF = {{ user.menuData.gf }}<br/>
+				  DF = {{ user.menuData.df }}<br/>
+				  Nuts = {{ user.menuData.nuts }}<br/>
+				  Veg = {{ user.menuData.vegetarian }}<br/>
 				
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-8">

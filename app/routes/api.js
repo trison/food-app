@@ -334,6 +334,10 @@ module.exports = function(app, express) {
         if (req.body.prep_time) menu.prep_time = req.body.prep_time;
         if (req.body.user_id) menu.user_id = req.body.user_id;
         if (req.body.img_url) menu.img_url = req.body.img_url;
+        if (req.body.df) menu.df = req.body.df;
+        if (req.body.df) menu.gf = req.body.gf;
+        if (req.body.df) menu.nuts = req.body.nuts;
+        if (req.body.df) menu.vegetarian = req.body.vegetarian;
 
         //save menu
         menu.save(function(err){

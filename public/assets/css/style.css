@@ -103,6 +103,10 @@ tr{
 	border-radius: 10px;
 }
 
+.diet-checkbox{
+	margin: 0 2%;
+}
+
 /*.ng-enter, .ng-leave{
 	width: 100%;
 	position: absolute;
