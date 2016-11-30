@@ -138,7 +138,7 @@ module.exports = function(app, express) {
     menu.user_id = req.body.user_id;
     menu.img_url = req.body.img_url;
     menu.gf = req.body.gf;
-    menu.df = req.body.gf;
+    menu.df = req.body.df;
     menu.nuts = req.body.nuts;
     menu.vegetarian = req.body.vegetarian;
 
@@ -335,9 +335,9 @@ module.exports = function(app, express) {
         if (req.body.user_id) menu.user_id = req.body.user_id;
         if (req.body.img_url) menu.img_url = req.body.img_url;
         if (req.body.df) menu.df = req.body.df;
-        if (req.body.df) menu.gf = req.body.gf;
-        if (req.body.df) menu.nuts = req.body.nuts;
-        if (req.body.df) menu.vegetarian = req.body.vegetarian;
+        if (req.body.gf) menu.gf = req.body.gf;
+        if (req.body. nuts) menu.nuts = req.body.nuts;
+        if (req.body.vegetarian) menu.vegetarian = req.body.vegetarian;
 
         //save menu
         menu.save(function(err){

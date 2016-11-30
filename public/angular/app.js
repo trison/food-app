@@ -250,12 +250,42 @@ angular.module('foodApp', [
 				vm.menuData = {};
 				vm.menuData.user_id = $routeParams._id;
 				vm.menuData.img_url = "img/placeholder.png";
-				// vm.menuData.gf = false;
-				// vm.menuData.df = false;
-				// vm.menuData.nuts = false;
-				// vm.menuData.vegetarian = false;
+				vm.menuData.gf = "false";
+				vm.menuData.df = "false";
+				vm.menuData.nuts = "false";
+				vm.menuData.vegetarian = "false";
 				//vm.message = data.message; //"Menu Validation Failed"??
 			});
+
+		vm.change = function(value, dietType){
+        	console.log("value = "+value+" dietType = "+dietType);
+        	switch(dietType) {
+        		case "g":
+        			if(value == "false")
+        				vm.menuData.gf = "true";
+        			else if (value == "true")
+        				vm.menuData.gf = "false";
+        			break;
+        		case "d":
+        			if(value == "false")
+        				vm.menuData.df = "true";
+        			else if (value == "true")
+        				vm.menuData.df = "false";
+        			break;
+        		case "n":
+        			if(value == "false")
+        				vm.menuData.nuts = "true";
+        			else if (value == "true")
+        				vm.menuData.nuts = "false";
+        			break;
+        		case "v":
+        			if(value == "false")
+        				vm.menuData.vegetarian = "true";
+        			else if (value == "true")
+        				vm.menuData.vegetarian = "false";
+        			break;
+        	}
+        }
 
 		vm.saveMenu = function() {
 			vm.processing = true;
@@ -388,7 +418,7 @@ angular.module('foodApp', [
         	console.log("value = "+value+" dietType = "+dietType);
         	switch(dietType) {
         		case "g":
-        			if(value == "false" || value == "" || value == null)
+        			if(value == "false")
         				vm.menuData.gf = "true";
         			else if (value == "true")
         				vm.menuData.gf = "false";
