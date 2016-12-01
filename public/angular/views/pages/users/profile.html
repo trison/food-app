@@ -20,6 +20,22 @@
 			<th>Email</th>
 			<td>{{ profile.user.email }}</td>
 		</tr>
+		<tr>
+			<th>Address</th>
+			<td>{{ profile.user.address }}</td>
+		</tr>
+		<tr>
+			<th>Phone #</th>
+			<td>{{ profile.user.phone }}</td>
+		</tr>
+		<tr>
+			<th>Hours</th>
+			<td>{{ profile.user.hours }}</td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td>{{ profile.user.description }}</td>
+		</tr>
 	</table>
 	<a ng-href="/users/{{ profile.user._id }}" class="btn btn-primary">Edit</a>
 </div>

@@ -19,7 +19,7 @@ module.exports = function(app, express) {
   apiRouter.post('/authenticate', function(req, res) {
     //find user. select username and password explicitly
     User.findOne({ username: req.body.username })
-    .select('_id name email username password').exec(function(err, user) {
+    .select('_id name email username password description hours address phone').exec(function(err, user) {
       if(err) throw err;
 
       //no user with that username found
@@ -43,10 +43,14 @@ module.exports = function(app, express) {
               _id: user._id,
               name: user.name,
               username: user.username,
-              email: user.email
+              email: user.email,
+              description: user.description,
+              hours: user.hours,
+              address: user.address,
+              phone: user.phone
             },
             superSecret, {
-              expiresIn: 1440 //24hrs
+              expiresIn: 1440 //24mins
             }
           );
         //return info including token as JSON
@@ -319,6 +323,7 @@ module.exports = function(app, express) {
         });
     });
 
+    // ===================== MENU ======================
     //----------------ROUTES FOR menu/:_id
     apiRouter.route('/menu/:_id')
     //GET menu with id (at /api/menu/:_id)
