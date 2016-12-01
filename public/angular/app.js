@@ -57,9 +57,9 @@ angular.module('foodApp', [
 			$location.path('/login');
 		};
 
-		vm.reloadRoute = function(){
-			$route.reload();
-		};
+		// vm.reloadRoute = function(){
+		// 	$route.reload();
+		// };
 
 		vm.message = "Ayo! This is message!";
 
@@ -141,6 +141,7 @@ angular.module('foodApp', [
 	.controller('userCreateController', function(User) {
 		var vm = this;
 		vm.type = 'create';
+		vm.message = '';
 
 		//create user
 		vm.saveUser = function(){
@@ -162,6 +163,7 @@ angular.module('foodApp', [
 	.controller('userEditController', function($routeParams, $window, User) {
 		var vm = this;
 		vm.type = 'edit';
+		vm.deleteMessage = '';
 
 		User.get($routeParams.user_id)
 			.success(function(data) {
@@ -237,6 +239,7 @@ angular.module('foodApp', [
 	.controller('menuCreateController', function($routeParams, User, Upload, $window) {
 		var vm = this;
 		vm.type = 'create';
+		vm.message = '';
 
 		User.get($routeParams._id)
 			.success(function(data) {
@@ -325,12 +328,12 @@ angular.module('foodApp', [
                 if(resp.data.error_code === 0){ //validate success
                     //$window.alert('Success ' + resp.config.data.file.name + ' uploaded. Response: ');
                     vm.menuData.img_url = "/img/menus/"+fileName;
-                    User.createMenu($routeParams._id, vm.menuData)
-						.success(function(data) {
-							vm.processing = false;
-							vm.menuData = {};
-							vm.message = data.message;
-						});
+      //               User.createMenu($routeParams._id, vm.menuData)
+						// .success(function(data) {
+						// 	vm.processing = false;
+						// 	vm.menuData = {};
+						// 	vm.message = data.message;
+						// });
                 } else {
                     //$window.alert('an error occured');
                     vm.message = "An error occured!";
@@ -353,6 +356,7 @@ angular.module('foodApp', [
 	.controller('menuEditController', function($routeParams, User, Upload, $window) {
 		var vm = this;
 		vm.type = 'edit';
+		vm.message = '';
 
 		User.getMenu($routeParams._id)
 			.success(function(menu) {
@@ -509,6 +513,48 @@ angular.module('foodApp', [
 					.success(function(data){
 						vm.processing = false;
 						vm.orders = data;
+				});
+			});
+		};
+	})
+	// ********************************************
+	// ADMIN CONTROLLER
+	.controller('adminController', function(User, $routeParams, $location) {
+		var vm = this;
+		vm.type = 'create';
+		vm.message = '';
+
+		User.get($routeParams.user_id)
+			.success(function(data) {
+				vm.userData = data;
+			});
+
+		if(vm.userData.admin != "y"){
+			$location.url('/profile');
+			return;
+		}
+
+		// processing variable to show loading
+		vm.processing = true;
+
+		// get users on page load
+		User.all().success(function(data) {
+		    // remove processing var when users come
+			vm.processing = false;
+			// bind the users to vm.users
+			vm.users = data;
+		});
+
+		vm.deleteUser = function(id) {
+			vm.processing = true;
+			//need to add menu deletion
+			
+			User.delete(id)
+				.success(function(data) {
+				User.all()
+					.success(function(data){
+						vm.processing = false;
+						vm.users = data;
 				});
 			});
 		};

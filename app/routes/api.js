@@ -65,6 +65,7 @@ module.exports = function(app, express) {
     res.json({ message: 'Welcome to the API boiii!' });
   });
 
+  // ===================== USER ======================
   //POST user at localhost:8080/api/users
   apiRouter.post('/users/', function(req, res) {
     //create new instance of User model
@@ -75,6 +76,10 @@ module.exports = function(app, express) {
     user.email = req.body.email;
     user.username = req.body.username;
     user.password = req.body.password;
+    user.address = req.body.address;
+    user.phone = req.body.phone;
+    user.description = req.body.description;
+    user.hours = req.body.hours;
 
     //save user and check for errors
     user.save(function(err) {
@@ -89,6 +94,7 @@ module.exports = function(app, express) {
     });
   })
 
+  // ===================== IMG (PROB NOT GONNA USE) ======================
   //POST image at /api/img
   apiRouter.post('/img/', function(req, res) {
     //create new instance of Img model
@@ -122,7 +128,6 @@ module.exports = function(app, express) {
         res.json(imgs);
       });
     });
-
 
   // ============ MENU =========================
   //POST menu at /api/menu
@@ -222,7 +227,6 @@ module.exports = function(app, express) {
       });
     })
 
-
   // ************** MIDDLEWARE for requests
   apiRouter.use(function(req, res, next) {
     //do logging
@@ -256,6 +260,7 @@ module.exports = function(app, express) {
     }
   });
 
+  // ===================== USER ======================
   //routes that end in /users
   apiRouter.route('/users')
     //GET users at /api/users
@@ -290,6 +295,10 @@ module.exports = function(app, express) {
         if (req.body.email) user.email = req.body.email;
         if (req.body.username) user.username = req.body.username;
         if(req.body.password) user.password = req.body.password;
+        if (req.body.address) user.address = req.body.address;
+        if (req.body.phone) user.phone = req.body.phone;
+        if (req.body.description) user.description = req.body.description;
+        if (req.body.hours) user.hours = req.body.hours;
 
         //save user
         user.save(function(err){

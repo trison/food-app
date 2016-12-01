@@ -68,6 +68,11 @@ angular.module('app.routes', ['ngRoute'])
 			  controller: 'orderController',
 			  controllerAs: 'order'
 			})
+			// .when('/admin', {
+			//   templateUrl: 'angular/views/pages/users/all.html',
+			//   controller: 'adminController',
+			//   controllerAs: 'admin'
+			// })
 			;
 		//set app to have pretty URLS
 		$locationProvider.html5Mode(true);

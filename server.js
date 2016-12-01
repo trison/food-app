@@ -14,6 +14,7 @@ var User = require('./app/models/user');
 var Img = require('./app/models/img');
 var Menu = require('./app/models/menu');
 var fs = require('fs');
+var imgMag = require('imagemagick');
 
 mongoose.connect(config.database)
 
@@ -25,8 +26,7 @@ app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
-/*====MULTER FILE UPLOAD =============================*/
-//use multer for file upload
+/*==== MULTER FILE UPLOAD =============================*/
 var storage = multer.diskStorage({
         destination: function (req, file, cb) {
             cb(null, './public/img/menus/')
@@ -37,7 +37,7 @@ var storage = multer.diskStorage({
 	        var day = date.getDay();
 	        var year = date.getFullYear();
 
-	        var timeStamp = year+month+day;
+	        var timeStamp = year+month+day;//or Date.now() for ms since 1970
 	        var name = file.originalname.split('.')[0];
 	        var ext = file.originalname.split('.')[file.originalname.split('.').length -1];
 
@@ -45,8 +45,18 @@ var storage = multer.diskStorage({
         }
     });
 
-//multer instance
+// multer instance
 var upload = multer({ storage: storage }).single('file');
+
+// imagemagick image resize
+imgMag.resize({
+  srcPath: './public/img/edit-icon.png',
+  dstPath: './public/img/test.png',
+  width:   256
+}, function(err, stdout, stderr){
+  if (err) throw err;
+  console.log('resized edit-icon to fit within 256x256px');
+});
 
 // ================= FILE DELETION ====================== 
 fs.stat(__dirname+'/public/img/placeholder.png', function (err, stats) {
@@ -59,7 +69,7 @@ fs.stat(__dirname+'/public/img/placeholder.png', function (err, stats) {
    // fs.unlink(__dirname+'/public/img/placeholder.png',function(err){
    //      if(err) return console.log(err);
    //      console.log('file deleted successfully');
-   // });  
+   // });
 });
 
 //==== CONFIGURE APP FOR CORS requests ===============

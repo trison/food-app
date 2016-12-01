@@ -8,6 +8,7 @@ angular.module('userService', [])
 		userFactory.get = function(id) {
 			return $http.get('/api/users/'+id);
 		};
+		
 		//GET you!
 		userFactory.me = function() {
 			return $http.get('/api/me/');
@@ -72,7 +73,6 @@ angular.module('userService', [])
 		userFactory.deleteOrder = function(orderId){
 			return $http.delete('/api/orders/'+orderId);
 		};
-
 
 		return userFactory;
 	});

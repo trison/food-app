@@ -9,9 +9,10 @@ var UserSchema = new Schema({
 	email: { type: String, required: true, index: { unique: true }},
 	username: { type: String, required: true, index: { unique: true }},
 	password: { type: String, required: true, select: false },
-	// menu: [
-	// 	{ name: String, price: String, description: String }
-	// ]
+	address: { type: String, required: true },
+	phone: { type: String, required: true },
+	description: { type: String, required: true },
+	hours: { type:String, required: true }
 });
 
 //hash password before user is saved
