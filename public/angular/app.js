@@ -160,7 +160,7 @@ angular.module('foodApp', [
 	})
 	// ********************************************
 	// USER EDIT CONTROLLER
-	.controller('userEditController', function($routeParams, $window, User) {
+	.controller('userEditController', function($routeParams, $window, User, Auth) {
 		var vm = this;
 		vm.type = 'edit';
 		vm.deleteMessage = '';
@@ -205,6 +205,7 @@ angular.module('foodApp', [
 			});
 
 			vm.deleteMessage = "User deleted!";
+			Auth.logout();
 		};
 
 		vm.saveUser = function() {
@@ -458,6 +459,7 @@ angular.module('foodApp', [
 		Auth.getUser()
 			.then(function(data){
 				vm.user = data.data;
+				console.log("hours = "+vm.user.hours)
 		});
 
 		User.menus().success(function(data) {

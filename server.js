@@ -50,7 +50,7 @@ var upload = multer({ storage: storage }).single('file');
 
 // imagemagick image resize
 imgMag.resize({
-  srcPath: './public/img/edit-icon.png',
+  srcPath: './public/img/edit*.png',
   dstPath: './public/img/test.png',
   width:   256
 }, function(err, stdout, stderr){
