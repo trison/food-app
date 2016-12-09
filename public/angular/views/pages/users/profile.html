@@ -36,6 +36,10 @@
 			<th>Restaurant Description</th>
 			<td>{{ profile.user.description }}</td>
 		</tr>
+		<tr>
+			<th>Delivery Fee</th>
+			<td>{{ profile.user.delivery }}</td>
+		</tr>
 	</table>
 	<a ng-href="/users/{{ profile.user._id }}" class="btn btn-primary">Edit</a>
 </div>

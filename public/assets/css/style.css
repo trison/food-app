@@ -23,6 +23,13 @@ header .navbar{
 	opacity: 0.9;
 }
 
+.home-page h1{
+	text-align: center;
+	font-size: 600%;
+	font-weight: bold;
+	font-family: 'Playfair Display', serif;
+}
+
 main {
 	padding-top: 30px;
 }
@@ -36,7 +43,7 @@ main {
 	font-weight: bold;
 	color: white;
 	padding: 15px 0 10px 0;
-	line-height: 20px;
+	line-height: 35px;
 	text-align: center;
 }
 

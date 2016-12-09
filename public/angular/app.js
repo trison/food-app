@@ -459,7 +459,7 @@ angular.module('foodApp', [
 		Auth.getUser()
 			.then(function(data){
 				vm.user = data.data;
-				console.log("hours = "+vm.user.hours)
+				console.log("delivery = "+vm.user.delivery)
 		});
 
 		User.menus().success(function(data) {

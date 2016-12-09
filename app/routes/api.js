@@ -47,7 +47,8 @@ module.exports = function(app, express) {
               description: user.description,
               hours: user.hours,
               address: user.address,
-              phone: user.phone
+              phone: user.phone,
+              delivery: user.delivery
             },
             superSecret, {
               expiresIn: 1440 //24mins
@@ -84,6 +85,7 @@ module.exports = function(app, express) {
     user.phone = req.body.phone;
     user.description = req.body.description;
     user.hours = req.body.hours;
+    user.delivery = req.body.delivery;
 
     //save user and check for errors
     user.save(function(err) {
@@ -303,6 +305,7 @@ module.exports = function(app, express) {
         if (req.body.phone) user.phone = req.body.phone;
         if (req.body.description) user.description = req.body.description;
         if (req.body.hours) user.hours = req.body.hours;
+        if (req.body.delivery) user.delivery = req.body.delivery;
 
         //save user
         user.save(function(err){

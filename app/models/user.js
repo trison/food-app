@@ -12,7 +12,8 @@ var UserSchema = new Schema({
 	address: { type: String, required: true },
 	phone: { type: String, required: true },
 	description: { type: String, required: true },
-	hours: { type: String, required: true }
+	hours: { type: String, required: true },
+	delivery: { type: String, required: true}
 });
 
 //hash password before user is saved
