@@ -19,7 +19,7 @@ module.exports = function(app, express) {
   apiRouter.post('/authenticate', function(req, res) {
     //find user. select username and password explicitly
     User.findOne({ username: req.body.username })
-    .select('_id name email username password description hours address phone').exec(function(err, user) {
+    .select('_id name email username password description hours address phone delivery min_order').exec(function(err, user) {
       if(err) throw err;
 
       //no user with that username found
@@ -48,7 +48,8 @@ module.exports = function(app, express) {
               hours: user.hours,
               address: user.address,
               phone: user.phone,
-              delivery: user.delivery
+              delivery: user.delivery,
+              min_order: user.min_order
             },
             superSecret, {
               expiresIn: 1440 //24mins
@@ -86,6 +87,7 @@ module.exports = function(app, express) {
     user.description = req.body.description;
     user.hours = req.body.hours;
     user.delivery = req.body.delivery;
+    user.min_order = req.body.min_order;
 
     //save user and check for errors
     user.save(function(err) {
@@ -177,26 +179,26 @@ module.exports = function(app, express) {
     });
   
   // ========== ORDERS ==========================
-  apiRouter.post('/orders/', function(req, res){
-    var order = new Order();
+  // apiRouter.post('/orders/', function(req, res){
+  //   var order = new Order();
 
-    //set order info (from request)
-    order.name = req.body.name;
-    order.customer_id = req.body.customer_id;
-    order.menu_id = req.body.customer_id;
-    order.time_placed = req.body.time_placed;
+  //   //set order info (from request)
+  //   order.name = req.body.name;
+  //   order.customer_username = req.body.customer_username;
+  //   order.menu_id = req.body.menu_id;
+  //   order.time_placed = req.body.time_placed;
 
-    //save order and check for errors
-    order.save(function(err) {
-      if(err) {
-        if(err.code == 11000)//duplicate entry
-          return res.json({ success: false, message: 'An order with that name already exists. '});
-        else
-          return res.send(err);
-      }
-      res.json({ message: 'Order added! '+req.body });
-    });
-  });
+  //   //save order and check for errors
+  //   order.save(function(err) {
+  //     if(err) {
+  //       if(err.code == 11000)//duplicate entry
+  //         return res.json({ success: false, message: 'An order with that name already exists. '});
+  //       else
+  //         return res.send(err);
+  //     }
+  //     res.json({ message: 'Order added! '+req.body });
+  //   });
+  // });
 
   apiRouter.route('/orders/')
     .get(function(req, res){
@@ -306,6 +308,7 @@ module.exports = function(app, express) {
         if (req.body.description) user.description = req.body.description;
         if (req.body.hours) user.hours = req.body.hours;
         if (req.body.delivery) user.delivery = req.body.delivery;
+        if (req.body.min_order) user.min_order = req.body.min_order;
 
         //save user
         user.save(function(err){

@@ -11,24 +11,29 @@
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th>Name
+				<th>Username
 					<button ng-click="sortBy('name')">Name</button>
        				 <span ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span>
        			</th>
-				<th>Customer ID</th>
-				<th>Menu ID</th>
+				<th>Restaurant ID</th>
+				<th>Dish ordered</th>
 				<th>Time Placed</th>
+				<th>Delivery Instruction</th>
+				<th>Subtotal</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 		    <!-- LOOP OVER THE MENU -->
-			<tr ng-repeat="item in order.orders | orderBy" >
+			<tr ng-repeat="item in order.orders | orderBy" ng-show="order.user._id == item.rest_oid">
 				<!--  ng-if="item.customer_id == order.user._id" -->
-				<td>{{ item.name }}</td>
-				<td>{{ item.customer_id }}</td>
-				<td>{{ item.menu_id }}</td>
-				<td>{{ item.time_placed }}</td>
+				<td>{{ item.Username }}</td>
+				<td>{{ item.rest_oid }}</td>
+				<td style="word-break: break-all;">{{ item.dish_ordered }}</td>
+				<td>{{ item.Time_Placed }}</td>
+				<td>{{ item.delivery_instruction }}</td>
+				<td>{{ item.subtotal}}</td>
+
 				<td class="col-sm-2">
 					<!-- <a ng-href="/orders/{{ item._id }}" class="btn btn-primary">View</a> -->
 					<a href="#" ng-click="order.deleteOrder(item._id)" class="btn btn-danger">Remove</a>
