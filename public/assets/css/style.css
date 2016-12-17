@@ -32,7 +32,7 @@ header .navbar{
 .jumbotron{
 	background-color: rgba(195, 195, 195, 0.8);
 	padding: none;
-	margin-top: 5%;
+	margin: 5%;
 }
 .home-page ul{
 	color: white;
@@ -100,12 +100,17 @@ header .navbar{
 }
 .home-page .jumbotron{
 	width: 100%;
-	padding: none;
-	margin-top: 0;
-	margin-bottom: 0;
+	padding: 5% 10%;
+	margin: 0;
 }
 .home-page .glyphicon{
 	font-size: 200%;
+}
+
+.home-page. footer{
+	text-align: center;
+	font-size: 1.5em;
+	padding: 5% 10%;
 }
 
 main {
@@ -113,13 +118,15 @@ main {
 }
 
 .page-header{
-	/*color: white;*/
+	color: white;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .hello{
 	font-size: 4em;
 	font-weight: bold;
-	/*color: white;*/
+	color: white;
 	padding: 15px 0 10px 0;
 	line-height: 35px;
 	text-align: center;
@@ -134,8 +141,6 @@ main {
 	display: block;
 	margin: 0 auto;
 }
-
-
 
 .btn-primary, .btn-danger{
 	margin-top: 1%;
@@ -166,7 +171,9 @@ tr{
 	position: absolute;
 	right: 0;
 }
-
+.text-wrap{
+	word-break: break-all;
+}
 /*uploaded img*/
 .upload{
 	max-width: 100%;

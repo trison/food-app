@@ -11,34 +11,40 @@
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th>Username
-					<button ng-click="sortBy('name')">Name</button>
-       				 <span ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span>
+				<th>Customer
+					<!-- <button ng-click="sortBy('name')">Name</button> -->
+       				<!--  <span ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span> -->
        			</th>
 				<th>Restaurant ID</th>
 				<th>Dish ordered</th>
 				<th>Time Placed</th>
-				<th>Delivery Instruction</th>
+				<th>Delivery Instructions</th>
 				<th>Subtotal</th>
+				<th></th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-		    <!-- LOOP OVER THE MENU -->
-			<tr ng-repeat="item in order.orders | orderBy" ng-show="order.user._id == item.rest_oid">
+		    <!-- LOOP OVER THE ORDERS -->
+			<tr ng-repeat="item in order.orders" ng-show="order.user._id == item.rest_oid">
 				<!--  ng-if="item.customer_id == order.user._id" -->
 				<td>{{ item.Username }}</td>
 				<td>{{ item.rest_oid }}</td>
-				<td style="word-break: break-all;">{{ item.dish_ordered }}</td>
+				<td class="text-wrap">{{ item.dish_ordered }}</td>
 				<td>{{ item.Time_Placed }}</td>
-				<td>{{ item.delivery_instruction }}</td>
+				<td class="text-wrap">{{ item.delivery_instruction }}</td>
 				<td>{{ item.subtotal}}</td>
 
 				<td class="col-sm-2">
 					<!-- <a ng-href="/orders/{{ item._id }}" class="btn btn-primary">View</a> -->
 					<a href="#" ng-click="order.deleteOrder(item._id)" class="btn btn-danger">Remove</a>
 				</td>
+
 			</tr>
+			<!-- <tr><td>{{order.test_array}}</td></tr> -->
+
+<!-- 			<tr><td ng-bind="order.orders">**{{ rest_oid }}</td></tr> -->
 	  	</tbody>
+	  	 <button ng-click="order.idToName(order.orders.dish_ordered, order.user._id)">Click</button>
 	</table>
 </div>

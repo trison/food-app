@@ -209,6 +209,12 @@ module.exports = function(app, express) {
     });
 
   apiRouter.route('/orders/:_id')
+    .get(function(req, res) {
+      Order.findById(req.params._id, function(err, order) {
+        if(err) res.send(err);
+        res.json(order);
+      })
+    })
     .delete(function(req, res) {
       Order.remove(
         { _id: req.params._id },

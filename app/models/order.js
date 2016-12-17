@@ -2,14 +2,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var MenuIDs = new Schema({
-	id: { type: String }
+	dish_ordered: { type: String }
 });
 
 var OrderSchema = new Schema({
-	username: { type: String},
-	rest_id: { type: String },
-	menu_ids: [ MenuIDs ],
-	time_placed: { type: String },
+	Username: { type: String},
+	rest_oid: { type: String },
+	// dish_ordered: [ MenuIDs ],
+	Time_Placed: { type: String },
 	delivery_instruction: { type: String},
 	subtotal: { type: String },
 });

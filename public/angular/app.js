@@ -459,7 +459,6 @@ angular.module('foodApp', [
 		Auth.getUser()
 			.then(function(data){
 				vm.user = data.data;
-				console.log("delivery = "+vm.user.delivery)
 		});
 
 		User.menus().success(function(data) {
@@ -486,6 +485,9 @@ angular.module('foodApp', [
 		var vm = this;
 		vm.processing = false;
 		vm.message = 'ORDERS PAGE!!';
+		vm.orders = "";
+		vm.test_array = [];
+		vm.dishes = [];
 
 		Auth.getUser()
 			.then(function(data){
@@ -504,6 +506,44 @@ angular.module('foodApp', [
 			.success(function(orders) {
 				vm.orders = orders;
 			});
+
+		vm.test_array = [
+	      "582b83bfc11b48edebdda811",
+	      "582b75ad555e4bd947906fb0",
+	      "582b8f53004203ee02909fad",
+	      "582b75dd555e4bd947906fb2"
+    	]
+		for (var i =0; i<vm.test_array.length; i++){
+			console.log("**"+vm.test_array[i]);
+			// console.log("**"+vm.orders.rest_oid[i]);
+		}
+		console.log("%%"+vm.orders.rest_oid);
+
+		vm.idToName = function(menuIdArray, restaurantId){
+			menuIdArray = vm.test_array;
+			console.log("IN FUNCTION. menuIdArray = "+menuIdArray);
+			console.log("RESTUANR ID = "+restaurantId);
+			//change menu ids' to menu names
+			var names = [];
+			var arrayLength = menuIdArray.length;
+			for (var i=0; i<arrayLength; i++){
+				console.log("menuIdArray["+i+"]"+" = "+menuIdArray[i]);
+				User.getOrder(menuIdArray[i])
+					.then(function(dish){
+						console.log("SUCCESS dish = "+dish);
+						vm.dishes[i] = dish;
+					});
+
+
+				//if restaurant id match
+				// if (vm.orders.dish_ordered[i] == restaurantId){
+				// 	console.log("MATCH");
+					//get name
+					//put in names[]
+				//}	
+			}
+			vm.orders = vm.dishes;
+		};
 
 		vm.deleteOrder = function(orderId){
 			vm.processing = true;
