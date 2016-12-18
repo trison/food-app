@@ -503,8 +503,8 @@ angular.module('foodApp', [
   		};
 
 		User.getOrders()
-			.success(function(orders) {
-				vm.orders = orders;
+			.success(function(ord) {
+				vm.orders = ord;
 			});
 
 		vm.test_array = [
@@ -515,14 +515,14 @@ angular.module('foodApp', [
     	]
 		for (var i =0; i<vm.test_array.length; i++){
 			console.log("**"+vm.test_array[i]);
-			// console.log("**"+vm.orders.rest_oid[i]);
+			// console.log("**"+vm.orders.dish_ordered[i]);
 		}
 		console.log("%%"+vm.orders.rest_oid);
 
 		vm.idToName = function(menuIdArray, restaurantId){
 			menuIdArray = vm.test_array;
 			console.log("IN FUNCTION. menuIdArray = "+menuIdArray);
-			console.log("RESTUANR ID = "+restaurantId);
+			// console.log("RESTUANR ID = "+restaurantId);
 			//change menu ids' to menu names
 			var names = [];
 			var arrayLength = menuIdArray.length;

@@ -7,6 +7,7 @@ body {
 	position: relative;
 	height: 100vh;
 /*	background-color: #FFFDF3;*/
+font-size: 200%;
 }
 
 @media screen and (min-width: 480px) and (max-width: 922px) {
@@ -111,6 +112,15 @@ header .navbar{
 	text-align: center;
 	font-size: 1.5em;
 	padding: 5% 10%;
+}
+.orders-page ul{
+	padding:0;
+	margin-left: 10%;
+	float: left;
+	
+}
+.orders-page li{
+
 }
 
 main {

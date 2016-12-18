@@ -1,3 +1,4 @@
+<div class="orders-page">
 <div class="page-header">
 	<h1>Incoming Orders :)</h1>
 </div>
@@ -15,12 +16,11 @@
 					<!-- <button ng-click="sortBy('name')">Name</button> -->
        				<!--  <span ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span> -->
        			</th>
-				<th>Restaurant ID</th>
-				<th>Dish ordered</th>
+			<!-- 	<th>Restaurant ID</th> -->
+				<th>Dishes ordered</th>
 				<th>Time Placed</th>
 				<th>Delivery Instructions</th>
 				<th>Subtotal</th>
-				<th></th>
 				<th></th>
 			</tr>
 		</thead>
@@ -29,8 +29,13 @@
 			<tr ng-repeat="item in order.orders" ng-show="order.user._id == item.rest_oid">
 				<!--  ng-if="item.customer_id == order.user._id" -->
 				<td>{{ item.Username }}</td>
-				<td>{{ item.rest_oid }}</td>
-				<td class="text-wrap">{{ item.dish_ordered }}</td>
+				<!-- <td>{{ item.rest_oid }}</td> -->
+				<td class="text-wrap">
+					<ul ng-repeat="name in item.dish_name">
+						<li>{{name}} x {{item.order_array[$index]}}</li>
+					</ul>
+
+				</td>
 				<td>{{ item.Time_Placed }}</td>
 				<td class="text-wrap">{{ item.delivery_instruction }}</td>
 				<td>{{ item.subtotal}}</td>
@@ -45,6 +50,7 @@
 
 <!-- 			<tr><td ng-bind="order.orders">**{{ rest_oid }}</td></tr> -->
 	  	</tbody>
-	  	 <button ng-click="order.idToName(order.orders.dish_ordered, order.user._id)">Click</button>
+<!-- 	  	 <button ng-click="order.idToName(order.orders.dish_ordered, order.user._id)">Click</button> -->
 	</table>
+</div>
 </div>

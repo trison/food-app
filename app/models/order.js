@@ -9,6 +9,8 @@ var OrderSchema = new Schema({
 	Username: { type: String},
 	rest_oid: { type: String },
 	// dish_ordered: [ MenuIDs ],
+	order_array: [],
+	dish_name: [],
 	Time_Placed: { type: String },
 	delivery_instruction: { type: String},
 	subtotal: { type: String },

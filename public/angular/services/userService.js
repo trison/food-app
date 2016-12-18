@@ -41,9 +41,9 @@ angular.module('userService', [])
 		};
 
 		//GET user's menu
-		userFactory.getUserMenu = function(userId){
-			return $http.get('/api/menu/'+userId)
-		};
+		// userFactory.getUserMenu = function(userId){
+		// 	return $http.get('/api/menu/'+userId)
+		// };
 
 		//POST (create) a menu item
 		userFactory.createMenu = function(menuData){
