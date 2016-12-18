@@ -20,9 +20,11 @@
 	<script src="angular/app.js"></script>
 	<script src="angular/app.routes.js"></script>
 	<script src="angular-file-upload-shim.min.js"></script> 
+	<script src="assets/js/konami.js"></script>
 	<script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
 	<!-- for no html5 browsers support -->
 	<script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script> 
+
 
 	<!-- SERVICES -->
 	<script src="angular/services/authService.js"></script>
@@ -41,9 +43,6 @@
 				<div class="navbar-header">
 					<a href="/home" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span> Home </a>
 				</div>
-				<ul class="nav navbar-nav">
-					<li ng-if="main.isAdmin"><a href="/users"><span class="glyphicon glyphicon-user"></span> Users</a></li>
-				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
 					<li ng-if="main.loggedIn"><a href="/profile">Profile</a>
@@ -53,7 +52,6 @@
 			</div>
 		</div>
 	</header>
-	<div class="hello" ng-if="main.loggedIn">Welcome {{ main.user.username }}.</div>
 	<main class="container-fluid" id="content-views">	
 		<div ng-view></div>
 	</main>

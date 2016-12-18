@@ -1,4 +1,5 @@
 <div class="orders-page">
+		<div class="hello">Welcome {{ order.user.username }}.</div>
 <div class="page-header">
 	<h1>Incoming Orders :)</h1>
 </div>
@@ -30,14 +31,14 @@
 				<!--  ng-if="item.customer_id == order.user._id" -->
 				<td>{{ item.Username }}</td>
 				<!-- <td>{{ item.rest_oid }}</td> -->
-				<td class="text-wrap">
+				<td>
 					<ul ng-repeat="name in item.dish_name">
-						<li>{{name}} x {{item.order_array[$index]}}</li>
+						<li><p>{{name}} x {{item.order_array[$index]}}</p></li>
 					</ul>
-
+				
 				</td>
 				<td>{{ item.Time_Placed }}</td>
-				<td class="text-wrap">{{ item.delivery_instruction }}</td>
+				<td><p>{{ item.delivery_instruction }}</p></td>
 				<td>{{ item.subtotal}}</td>
 
 				<td class="col-sm-2">
