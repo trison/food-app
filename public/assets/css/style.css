@@ -7,7 +7,7 @@ body {
 	position: relative;
 	height: 100vh;
 /*	background-color: #FFFDF3;*/
-font-size: 200%;
+	font-size: 150%;
 }
 
 @media screen and (min-width: 480px) and (max-width: 922px) {
@@ -37,7 +37,7 @@ header .navbar{
 }
 .home-page ul{
 	color: white;
-	background-color: rgba( 10, 10, 10, 0.4);
+	background-color: rgba( 10, 10, 10, 0.8);
 	margin-top: 0;
 	height: 55px;
 	font-size: 150%;
@@ -62,7 +62,7 @@ header .navbar{
 
 .home-page h1{
 	text-align: center;
-	font-size: 500%;
+	/*font-size: 100%;*/
 /*	font-weight: bold;*/
 	font-family: quicksand;
 	vertical-align: middle;
@@ -77,14 +77,14 @@ header .navbar{
 .home-page .header{
 	padding: 0 3%;
 	color: white;
-	height: 92vh;
+/*	height: 92vh;*/
 }
 .home-page .header .inside{
 	background-color: rgba( 10, 10, 10, 0.6);
 	width: 90%;
 	margin: 5%;
 	border-radius: 15px;
-	padding-bottom: 15px;
+	padding: 5% 0;
 	text-align: center;
 	font-size: 200%;
 }
@@ -100,6 +100,7 @@ header .navbar{
 	font-size: 1.5em;
 }
 .home-page .jumbotron{
+	background-color: rgba(225, 225, 225, 0.9);
 	width: 100%;
 	padding: 5% 10%;
 	margin: 0;
@@ -108,19 +109,19 @@ header .navbar{
 	font-size: 200%;
 }
 
-.home-page. footer{
+.home-page footer{
+	background-color: rgba(32, 32, 32, 1);
 	text-align: center;
-	font-size: 1.5em;
 	padding: 5% 10%;
+	color: white;
 }
 .orders-page ul{
 	padding:0;
 	margin-left: 10%;
 	float: left;
-	
 }
 .orders-page li{
-
+	margin-top: 0;
 }
 
 main {
@@ -180,9 +181,6 @@ tr{
 	background: url(../../img/edit-icon.png);
 	position: absolute;
 	right: 0;
-}
-.text-wrap{
-	word-break: break-all;
 }
 /*uploaded img*/
 .upload{
