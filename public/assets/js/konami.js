@@ -34,5 +34,5 @@ document.addEventListener('keydown', function(e) {
 });
 
 function activateCheats() {
-  window.location = "https://www.youtube.com/embed/z13qnzUQwuI?rel=0";
+  window.location = "https://www.youtube.com/embed/z13qnzUQwuI?rel=0&autoplay=1";
 }
