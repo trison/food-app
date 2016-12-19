@@ -98,7 +98,7 @@ module.exports = function(app, express) {
         else
           return res.send(err);
       }
-      res.json({ message: 'User created! '+ req.body });
+      res.json({ message: 'Thank for for registering, '+req.body.name+'!' });
     });
   })
 
@@ -164,7 +164,7 @@ module.exports = function(app, express) {
         else
           return res.send(err);
       }
-      res.json({ message: 'Menu added! '+req.body });
+      res.json({ message: 'Menu item '+req.body.name+' added! ' });
     });
   })
 
@@ -331,7 +331,7 @@ module.exports = function(app, express) {
         { _id: req.params.user_id },
         function(err, user){
           if(err) return res.send(err);
-          res.json({ message: 'Successfully deleted' });
+          res.json({ message: 'Successfully deleted user!' });
         });
     });
 
