@@ -26,6 +26,18 @@ header .navbar{
 	border-radius:0;
 	opacity: 0.9;
 }
+
+.navbar .container .navbar-brand{
+	font-weight: bold;
+	font-size: 200%;
+	color: white;
+	transition: color 0.1s;
+}
+
+.navbar .container .navbar-brand:hover{
+	color: #777;
+}
+
 .container-fluid{
 	padding: 0;
 }
@@ -43,21 +55,6 @@ header .navbar{
 	font-size: 150%;
 	font-weight: bold;
 	list-style-type: none;
-}
-.home-page li:hover, .first:hover{
-	color:orange;
-}
-.home-page li, .first{
-	transition: color 0.4s;
-}
-
-.home-page ul li{
-	float: right;
-	margin: 1% 1% 0 1%;
-}
-.home-page ul .first {
-	float: left;
-	margin-left: 0;
 }
 
 .home-page h1{
@@ -123,6 +120,9 @@ header .navbar{
 .orders-page li{
 	margin-top: 0;
 }
+.orders-page .jumbotron{
+	margin-top: 0;
+}
 
 main {
 	padding-top: 30px;
@@ -147,12 +147,6 @@ main {
 	position: relative;
 }
 
-.menu-thumb {
-	width: 150px;
-	display: block;
-	margin: 0 auto;
-}
-
 .btn-primary, .btn-danger{
 	margin-top: 1%;
 }
@@ -173,6 +167,32 @@ tr{
 /*========== PROFILE & MENU PAGEs ==========*/
 .profile-page th{
 	width: 40%;
+}
+.profile-page .jumbotron{
+	margin-top: 0;
+}
+.profile-page .description{
+	
+}
+.profile-page .dish-img{
+
+}
+.profile-page .menu-thumb {
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+}
+.profile-page .sm-th{
+	width: 25%;
+}
+.profile-page .xsm-th{
+	width: 15%;
+}
+.profile-page .md-th{
+	width: 30%;
+}
+.single-menu-page .jumbotron{
+	margin-top: 0;
 }
 
 .edit-button{

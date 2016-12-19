@@ -29,17 +29,17 @@
 		    <!-- LOOP OVER THE ORDERS -->
 			<tr ng-repeat="item in order.orders" ng-show="order.user._id == item.rest_oid">
 				<!--  ng-if="item.customer_id == order.user._id" -->
-				<td>{{ item.Username }}</td>
+				<td><p>{{ item.Username }}<p></td>
 				<!-- <td>{{ item.rest_oid }}</td> -->
 				<td>
 					<ul ng-repeat="name in item.dish_name">
-						<li><p>{{name}} x {{item.order_array[$index]}}</p></li>
+						<li><p>{{item.order_array[$index]}} x {{name}}</p></li>
 					</ul>
 				
 				</td>
-				<td>{{ item.Time_Placed }}</td>
+				<td><p>{{ item.Time_Placed }}</p></td>
 				<td><p>{{ item.delivery_instruction }}</p></td>
-				<td>{{ item.subtotal}}</td>
+				<td><p>{{ item.subtotal}}</p></td>
 
 				<td class="col-sm-2">
 					<!-- <a ng-href="/orders/{{ item._id }}" class="btn btn-primary">View</a> -->

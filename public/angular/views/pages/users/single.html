@@ -1,3 +1,4 @@
+<div class="profile-page">
 <div class="page-header">
 	<h1 ng-if="user.type == 'create'">Create User</h1>
 	<h1 ng-if="user.type == 'edit'">Edit Profile</h1>
@@ -80,9 +81,12 @@
 			<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'create'">Create User</button>
 			<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'edit'">Update Profile</button>
 		</div>
+		<div class="col-sm-offset-2 col-sm-6">
+			<a href="#" ng-click="user.deleteUser(user.userData._id)" class="btn btn-danger" style="margin-top: 5%;">Delete User</a>
+		</div>
 	</div>
-
 </form>
+
 
 <div class="row show-hide-message" ng-show="user.message">
 	<div class="col-sm-6 col-sm-offset-2">
@@ -103,5 +107,4 @@
 		</div>
 	</div>
 </div>
-<a href="#" ng-click="user.deleteUser(user.userData._id)" class="btn btn-danger">Delete User</a>
-
+</div>
