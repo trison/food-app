@@ -88,7 +88,14 @@ angular.module('foodApp', [
 	})	
 	// ********************************************
 	// USER CONTROLLER
-	.controller('userController', function(User) {
+	.controller('userController', function(User, Auth, $location) {
+		Auth.getUser()
+			.then(function(data){
+				vm.user = data.data;
+				if(vm.user.username !== "admin")
+					$location.path('/profile')
+		});
+
 		var vm = this;
 
 		// processing variable to show loading
@@ -483,7 +490,7 @@ angular.module('foodApp', [
 	// ORDERS CONTROLLER
 	.controller('orderController', function(Auth, User, $window, $route){
 		var vm = this;
-		vm.processing = false;
+		vm.processing = true;
 		vm.message = 'ORDERS PAGE!!';
 		vm.orders = "";
 		vm.test_array = [];
@@ -505,45 +512,8 @@ angular.module('foodApp', [
 		User.getOrders()
 			.success(function(ord) {
 				vm.orders = ord;
+				vm.processing = false;
 			});
-
-		vm.test_array = [
-	      "582b83bfc11b48edebdda811",
-	      "582b75ad555e4bd947906fb0",
-	      "582b8f53004203ee02909fad",
-	      "582b75dd555e4bd947906fb2"
-    	]
-		for (var i =0; i<vm.test_array.length; i++){
-			console.log("**"+vm.test_array[i]);
-			// console.log("**"+vm.orders.dish_ordered[i]);
-		}
-		console.log("%%"+vm.orders.rest_oid);
-
-		vm.idToName = function(menuIdArray, restaurantId){
-			menuIdArray = vm.test_array;
-			console.log("IN FUNCTION. menuIdArray = "+menuIdArray);
-			// console.log("RESTUANR ID = "+restaurantId);
-			//change menu ids' to menu names
-			var names = [];
-			var arrayLength = menuIdArray.length;
-			for (var i=0; i<arrayLength; i++){
-				console.log("menuIdArray["+i+"]"+" = "+menuIdArray[i]);
-				User.getOrder(menuIdArray[i])
-					.then(function(dish){
-						console.log("SUCCESS dish = "+dish);
-						vm.dishes[i] = dish;
-					});
-
-
-				//if restaurant id match
-				// if (vm.orders.dish_ordered[i] == restaurantId){
-				// 	console.log("MATCH");
-					//get name
-					//put in names[]
-				//}	
-			}
-			vm.orders = vm.dishes;
-		};
 
 		vm.deleteOrder = function(orderId){
 			vm.processing = true;

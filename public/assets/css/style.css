@@ -194,6 +194,9 @@ tr{
 .single-menu-page .jumbotron{
 	margin-top: 0;
 }
+.register-page .jumbotron{
+	margin-top: 0;
+}
 
 .edit-button{
 	height: 75px;
@@ -225,7 +228,7 @@ tr{
 	margin: 0 2%;
 }
 
-/*.ng-enter, .ng-leave{
+.ng-enter, .ng-leave{
 	width: 100%;
 	position: absolute;
 }
@@ -238,15 +241,15 @@ tr{
 	-webkit-animation: fadeOut 0.25s both ease-in;
 	-moz-animation: fadeOut 0.25s both ease-in;
 	animation: fadeOut 0.25s both ease-in;
-}*/
-.show-hide-message{
+}
+/*.show-hide-message{
 	text-align: center;
 }
 .show-hide-message.ng-hide-remove{
 	-webkit-animation: zoomIn 0.25s both ease;
 	-moz-animation: zoomIn 0.25s both ease;
 	animation: zoomIn 0.25s both ease;
-}
+}*/
 
 /* =========== ANIMATIONS =================== */ 
 .spinner {
