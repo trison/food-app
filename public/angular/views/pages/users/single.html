@@ -4,6 +4,26 @@
 	<h1 ng-if="user.type == 'edit'">Edit Profile</h1>
 </div>
 
+<div class="row show-hide-message" ng-show="user.message">
+	<div class="col-sm-6 col-sm-offset-2">
+		
+		<div class="alert alert-info">
+			{{ user.message }}
+			<br><br><a href="/profile">Back to Profile</a>
+		</div>
+	</div>
+</div>
+
+<div class="row show-hide-message" ng-show="user.deleteMessage">
+	<div class="col-sm-6 col-sm-offset-2">
+		
+		<div class="alert alert-info">
+			{{ user.deleteMessage }}
+			<br><br><a href="/login">Login Page</a>
+		</div>
+	</div>
+</div>
+
 <form class="form-horizontal jumbotron" ng-submit="user.saveUser()">
 
 	<div class="form-group">
@@ -87,24 +107,4 @@
 	</div>
 </form>
 
-
-<div class="row show-hide-message" ng-show="user.message">
-	<div class="col-sm-6 col-sm-offset-2">
-		
-		<div class="alert alert-info">
-			{{ user.message }}
-			<br><br><a href="/profile">Back to Profile</a>
-		</div>
-	</div>
-</div>
-
-<div class="row show-hide-message" ng-show="user.deleteMessage">
-	<div class="col-sm-6 col-sm-offset-2">
-		
-		<div class="alert alert-info">
-			{{ user.deleteMessage }}
-			<br><br><a href="/login">Login Page</a>
-		</div>
-	</div>
-</div>
 </div>

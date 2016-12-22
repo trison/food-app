@@ -52,7 +52,7 @@ module.exports = function(app, express) {
               min_order: user.min_order
             },
             superSecret, {
-              expiresIn: 1440 //24mins
+              expiresIn: 3600 //60mins
             }
           );
         //return info including token as JSON

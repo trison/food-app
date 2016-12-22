@@ -60,7 +60,6 @@ angular.module('foodApp', [
 		// vm.reloadRoute = function(){
 		// 	$route.reload();
 		// };
-		};
 	})	
 	// ********************************************
 	// USER CONTROLLER
@@ -142,6 +141,7 @@ angular.module('foodApp', [
 					vm.userData = {};
 					vm.message = data.message;
 				});
+			$window.scrollTo(0,0);
 		};
 	})
 	// ********************************************
@@ -191,6 +191,7 @@ angular.module('foodApp', [
 			});
 
 			vm.deleteMessage = "User deleted!";
+			$window.scrollTo(0,0);
 			Auth.logout();
 		};
 
@@ -204,6 +205,7 @@ angular.module('foodApp', [
 					vm.userData = {};
 					vm.message = data.message;
 				});
+			$window.scrollTo(0,0);
 		};
 
 		vm.deleteMenu = function(menuId){
@@ -287,6 +289,7 @@ angular.module('foodApp', [
 					vm.menuData = {};
 					vm.message = data.message;
 				});
+			$window.scrollTo(0,0);
 		};
 
 		//Menu img submit
