@@ -60,30 +60,6 @@ angular.module('foodApp', [
 		// vm.reloadRoute = function(){
 		// 	$route.reload();
 		// };
-
-		vm.message = "Ayo! This is message!";
-
-		//define list of items
-		vm.computers = [
-			{ name: 'Macbook Pro', color: 'Silver', nerdness: 7 },
-			{ name: 'Yoga 2 Pro', color: 'Gray', nerdness: 6 },
-			{ name: 'ChromeBook', color: 'Black', nerdness: 5 }	
-		];
-
-		//object with info from form
-		vm.computerData = {};
-		
-		vm.addComputer = function(){
-			
-			//add computer
-			vm.computers.push({
-				name: vm.computerData.name,
-				color: vm.computerData.color,
-				nerdness: vm.computerData.nerdness
-			});
-
-			//clear object/form
-			vm.computerData = {};
 		};
 	})	
 	// ********************************************
@@ -100,6 +76,9 @@ angular.module('foodApp', [
 
 		// processing variable to show loading
 		vm.processing = true;
+
+		//delay before getting users info
+		setTimeout( function(){}, 2000 );
 
 		// get users on page load
 		User.all().success(function(data) {
@@ -336,12 +315,6 @@ angular.module('foodApp', [
                 if(resp.data.error_code === 0){ //validate success
                     //$window.alert('Success ' + resp.config.data.file.name + ' uploaded. Response: ');
                     vm.menuData.img_url = "/img/menus/"+fileName;
-      //               User.createMenu($routeParams._id, vm.menuData)
-						// .success(function(data) {
-						// 	vm.processing = false;
-						// 	vm.menuData = {};
-						// 	vm.message = data.message;
-						// });
                 } else {
                     //$window.alert('an error occured');
                     vm.message = "An error occured!";
@@ -546,14 +519,10 @@ angular.module('foodApp', [
 			return;
 		}
 
-		// processing variable to show loading
 		vm.processing = true;
 
-		// get users on page load
 		User.all().success(function(data) {
-		    // remove processing var when users come
 			vm.processing = false;
-			// bind the users to vm.users
 			vm.users = data;
 		});
 
