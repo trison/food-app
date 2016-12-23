@@ -1,7 +1,9 @@
 Ding Dong Delivery
 =======
- 
-Connect with restaurants to get food delivered to your door.
+
+Ding Dong delivery is a simple and convenient restaurant aggregation and ordering service.
+
+The website acts as a promotional tool and as an application for restaurant owners to receive orders.
 
 Run locally:
 -----------

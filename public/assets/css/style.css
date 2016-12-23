@@ -24,7 +24,7 @@ body {
 
 header .navbar{
 	border-radius:0;
-	opacity: 0.9;
+	opacity: 1;
 }
 
 header .navbar img{
@@ -39,7 +39,8 @@ header .navbar img{
 }
 
 .navbar .container .navbar-brand:hover{
-	color: #777;
+	/*color: #777;*/
+	opacity: 0.4;
 }
 
 .container-fluid{
@@ -49,7 +50,7 @@ header .navbar img{
 .jumbotron{
 	background-color: rgba(195, 195, 195, 0.8);
 	padding: none;
-	margin: 5%;
+	margin: 0 5% 5% 5%;
 }
 .home-page ul{
 	color: white;
