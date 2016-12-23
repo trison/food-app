@@ -1,5 +1,5 @@
 body {
-	background: url(../../img/login-bg-lg.jpg) no-repeat center center fixed; 
+	background: url(../../img/login-bg-md.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -25,6 +25,10 @@ body {
 header .navbar{
 	border-radius:0;
 	opacity: 0.9;
+}
+
+header .navbar img{
+	margin-top: -2%;
 }
 
 .navbar .container .navbar-brand{
@@ -76,6 +80,7 @@ header .navbar{
 	color: white;
 /*	height: 92vh;*/
 }
+
 .home-page .header .inside{
 	background-color: rgba( 10, 10, 10, 0.6);
 	width: 90%;
@@ -113,15 +118,21 @@ header .navbar{
 	color: white;
 }
 .orders-page ul{
-	padding:0;
+	padding: 0 20% 0 0;
 	margin-left: 10%;
 	float: left;
 }
 .orders-page li{
 	margin-top: 0;
+	float: left;
 }
 .orders-page .jumbotron{
 	margin-top: 0;
+}
+.orders-page .btn-success{
+	text-align: center;
+	float: right;
+	font-size: 200%;
 }
 
 main {

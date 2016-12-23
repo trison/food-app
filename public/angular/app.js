@@ -504,6 +504,10 @@ angular.module('foodApp', [
 				});
 			});
 		};
+
+		vm.refresh = function(){
+			$route.reload();
+		};
 	})
 	// ********************************************
 	// ADMIN CONTROLLER
