@@ -4,6 +4,22 @@
 	All fields required.
 </div>
 
+<div class="row show-hide-message" ng-show="user.message">
+	<div class="col-sm-6 col-sm-offset-2">
+		<div class="alert alert-info">
+			{{ user.message }}
+			<a href="/login">Login</a>
+		</div>
+	</div>
+</div>
+
+<div class="row show-hide-message" ng-show="user.error">
+	<div class="col-sm-6 col-sm-offset-2">
+		<div class="alert alert-info">
+			{{ user.error }}
+		</div>
+	</div>
+</div>
 
 <form class="form-horizontal jumbotron" ng-submit="user.saveUser()">
 	
@@ -30,6 +46,13 @@
 
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Password</label>
+		<div class="col-sm-6">
+			<input type="password" class="form-control" ng-model="user.userData.password1">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Retype Password</label>
 		<div class="col-sm-6">
 			<input type="password" class="form-control" ng-model="user.userData.password">
 		</div>
@@ -85,13 +108,5 @@
 
 </form>
 
-<div class="row show-hide-message" ng-show="user.message">
-	<div class="col-sm-6 col-sm-offset-2">
-		
-		<div class="alert alert-info">
-			{{ user.message }}
-			<a href="/login">Login</a>
-		</div>
-	</div>
-</div>
+
 </div>

@@ -123,24 +123,33 @@ angular.module('foodApp', [
 	})
 	// ********************************************
 	// USER CREATE CONTROLLER
-	.controller('userCreateController', function(User) {
+	.controller('userCreateController', function(User, $window) {
 		var vm = this;
 		vm.type = 'create';
 		vm.message = '';
+		vm.error = '';
 
 		//create user
 		vm.saveUser = function(){
 			vm.processing = true;
 			vm.message = '';
+			vm.error = '';
 
-			User.create(vm.userData)
-				.success(function(data){
-					vm.processing = false;
+			if (vm.userData.password == vm.userData.password1){
+				User.create(vm.userData)
+					.success(function(data){
+						vm.processing = false;
 
-					//clear form after success
-					vm.userData = {};
-					vm.message = data.message;
-				});
+						//clear form after success
+						vm.userData = {};
+						vm.message = data.message;
+					});
+			}
+			else{
+				vm.processing = false;
+				vm.error = "Password entries do not match!";
+			}
+
 			$window.scrollTo(0,0);
 		};
 	})
@@ -150,6 +159,7 @@ angular.module('foodApp', [
 		var vm = this;
 		vm.type = 'edit';
 		vm.deleteMessage = '';
+		vm.error = '';
 
 		User.get($routeParams.user_id)
 			.success(function(data) {
@@ -198,13 +208,20 @@ angular.module('foodApp', [
 		vm.saveUser = function() {
 			vm.processing = true;
 			vm.message = '';
+			vm.error = '';
 
-			User.update($routeParams.user_id, vm.userData)
-				.success(function(data) {
-					vm.processing = false;
-					vm.userData = {};
-					vm.message = data.message;
-				});
+			if (vm.userData.password == vm.userData.password1){
+				User.update($routeParams.user_id, vm.userData)
+					.success(function(data) {
+						vm.processing = false;
+						vm.userData = {};
+						vm.message = data.message;
+					});
+			}
+			else{
+				vm.processing = false;
+				vm.error = "Password entries do not match!";
+			}
 			$window.scrollTo(0,0);
 		};
 
@@ -467,10 +484,7 @@ angular.module('foodApp', [
 	.controller('orderController', function(Auth, User, $window, $route){
 		var vm = this;
 		vm.processing = true;
-		vm.message = 'ORDERS PAGE!!';
 		vm.orders = "";
-		vm.test_array = [];
-		vm.dishes = [];
 
 		Auth.getUser()
 			.then(function(data){
