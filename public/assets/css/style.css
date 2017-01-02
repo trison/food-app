@@ -10,18 +10,6 @@ body {
 	font-size: 150%;
 }
 
-@media screen and (min-width: 480px) and (max-width: 922px) {
-	body {
-	    background: url(../../img/login-bg-sm.jpg) no-repeat center center fixed; 
-	}
-}
-
-@media screen and (max-width: 479px) {
-	body {
-	    background: url(../../img/login-bg-sm.jpg) no-repeat center center fixed; 
-	}
-}
-
 header .navbar{
 	border-radius:0;
 	opacity: 1;
@@ -64,8 +52,6 @@ header .navbar img{
 
 .home-page h1{
 	text-align: center;
-	/*font-size: 100%;*/
-/*	font-weight: bold;*/
 	font-family: quicksand;
 	vertical-align: middle;
 }
@@ -76,10 +62,17 @@ header .navbar img{
 	margin-bottom: 3%;
 }
 
+.home-page h3{
+	margin-top: 3%;
+}
+
 .home-page .header{
 	padding: 0 3%;
 	color: white;
 /*	height: 85vh;*/
+}
+.home-page .restaurant{
+	border-top: 1px dotted grey;
 }
 
 .home-page .header .inside{
@@ -113,6 +106,13 @@ header .navbar img{
 .home-page .glyphicon{
 	font-size: 200%;
 }
+ .home-page .app-store{
+ 	background: url(../../img/app-store-soon-md.png);
+	width: 375px;
+	height: 113px;
+	display: block;
+	margin: 0 auto;
+ }
 
 .home-page footer{
 	background-color: rgba(32, 32, 32, 1);
@@ -319,4 +319,31 @@ tr{
 	45% { transform: rotate(-20deg); }
 	70% { transform: rotate(0deg); }
 	100% { transform: rotate(0deg); }
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+	/*body {
+	    background: url(../../img/login-bg-sm.jpg) no-repeat center center fixed; 
+	}*/
+	.home-page .middle{
+		border-left: none;
+		border-right: none;
+		padding: 5% 0;
+	}
+}
+
+@media screen and (max-width: 479px) {
+/*	body {
+	    background: url(../../img/login-bg-sm.jpg) no-repeat center center fixed; 
+	}*/
+	.home-page .middle{
+		border-left: none;
+		border-right: none;
+		padding: 5% 0;
+	}
+	.home-page .app-store{
+		background: url(../../img/app-store-soon-sm.png);
+		width: 256px;
+		height: 77px;
+	}
 }
