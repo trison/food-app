@@ -79,7 +79,7 @@ header .navbar img{
 .home-page .header{
 	padding: 0 3%;
 	color: white;
-/*	height: 92vh;*/
+/*	height: 85vh;*/
 }
 
 .home-page .header .inside{
@@ -103,10 +103,12 @@ header .navbar img{
 	font-size: 1.5em;
 }
 .home-page .jumbotron{
-	background-color: rgba(225, 225, 225, 0.9);
+	background-color: rgba(225, 225, 225, 1);
 	width: 100%;
 	padding: 5% 10%;
 	margin: 0;
+	position: relative;
+	z-index: 2;
 }
 .home-page .glyphicon{
 	font-size: 200%;
@@ -283,4 +285,38 @@ tr{
 @-moz-keyframes spin {
 	from { -moz-transform: rotate(0deg); }
 	to { -moz-transform: rotate(360deg); }
+}
+
+.bell-jingle {
+	animation: jingle 1s infinite;
+	-webkit-animation: jingle 1s infinite;
+	-moz-animation: jingle 1s infinite;	
+	transform-origin: top right;
+}
+
+@keyframes jingle {
+	0% { transform: rotate(0deg); }
+	15% { transform: rotate(-20deg); }
+	30% { transform: rotate(0deg); }
+	45% { transform: rotate(-20deg); }
+	70% { transform: rotate(0deg); }
+	100% { transform: rotate(0deg); }
+}
+
+@-webkit-keyframes jingle {
+	0% { transform: rotate(0deg); }
+	15% { transform: rotate(-20deg); }
+	30% { transform: rotate(0deg); }
+	45% { transform: rotate(-20deg); }
+	70% { transform: rotate(0deg); }
+	100% { transform: rotate(0deg); }
+}
+
+@-moz-keyframes jingle {
+	0% { transform: rotate(0deg); }
+	15% { transform: rotate(-20deg); }
+	30% { transform: rotate(0deg); }
+	45% { transform: rotate(-20deg); }
+	70% { transform: rotate(0deg); }
+	100% { transform: rotate(0deg); }
 }
