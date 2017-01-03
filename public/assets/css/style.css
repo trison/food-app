@@ -62,17 +62,16 @@ header .navbar img{
 	margin-bottom: 3%;
 }
 
-.home-page h3{
-	margin-top: 3%;
-}
-
 .home-page .header{
 	padding: 0 3%;
 	color: white;
 /*	height: 85vh;*/
 }
 .home-page .restaurant{
-	border-top: 1px dotted grey;
+	background-color: rgba(210, 210, 210, 1);
+	padding-bottom: 2%;
+	border-radius: 5px;
+	margin-top: 3%;
 }
 
 .home-page .header .inside{
