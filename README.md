@@ -15,4 +15,4 @@ Run locally:
   * go to [localhost:8080](localhost:8080)
  
 
-Updates are periodically pushed live to [https://gentle-peak-37468.herokuapp.com/](https://gentle-peak-37468.herokuapp.com)
+The website is pushed live to [www.dingdongdelivery.ca](www.dingdongdelivery.ca)
