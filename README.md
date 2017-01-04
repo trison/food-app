@@ -15,4 +15,4 @@ Run locally:
   * go to [localhost:8080](localhost:8080)
  
 
-The website is pushed live to [www.dingdongdelivery.ca](www.dingdongdelivery.ca)
+The website is pushed live to [http://www.dingdongdelivery.ca/](http://www.dingdongdelivery.ca/)
