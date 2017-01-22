@@ -3,6 +3,7 @@ var Img = require('../models/img');
 var Menu = require('../models/menu');
 var Order = require('../models/order');
 var Customer = require('../models/customer');
+var Driver = require('../models/driver');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
 var fs = require('fs');
@@ -240,6 +241,50 @@ module.exports = function(app, express) {
           res.json(customer);
       });
     })
+
+    // ===================== DRIVER ======================
+    apiRouter.route('/drivers/')
+    .get(function(req, res){
+      Driver.find(function(err, drivers) {
+        if(err) res.send(err);
+          res.json(drivers);  
+      });
+    });
+
+    apiRouter.route('/drivers/:_id')
+    .get(function(req, res) {
+      Driver.findById(req.params._id, function(err, driver) {
+        if(err) res.send(err);
+          res.json(driver);
+      });
+    })
+    .put(function(req, res) {
+      //use driver model to find the user we want
+      Driver.findById(req.params._id, function(err, driver){
+        if(err) res.send(err);
+      
+        //update only if new
+        if (req.body.name) driver.name = req.body.name;
+        if (req.body.restaurant_id) driver.restaurant_id = req.body.restaurant_id;
+        if (req.body.phone_number) driver.phone_number = req.body.phone_number;
+
+        //save driver
+        user.save(function(err){
+          if(err) res.send(err);
+          
+          //return a message
+          res.json({ message: 'Driver updated!' });
+        });
+      });
+    })
+    .delete(function(req, res) {
+      Driver.remove(
+        { _id: req.params._id },
+        function(err, driver){
+          if(err) return res.send(err);
+          res.json({ message: 'Successfully deleted driver!' });
+        });
+    });
 
   // ************** MIDDLEWARE for requests
   apiRouter.use(function(req, res, next) {
