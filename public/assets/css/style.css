@@ -210,6 +210,17 @@ tr{
 .register-page .jumbotron{
 	margin-top: 0;
 }
+.learn-page{
+	color:white;
+	font-family: quicksand;
+}
+.learn-page .section{
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 15px;
+	padding: 1%;
+	color: black;
+	font-size: 125%;
+}
 
 .edit-button{
 	height: 75px;

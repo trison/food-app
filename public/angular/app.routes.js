@@ -68,6 +68,16 @@ angular.module('app.routes', ['ngRoute'])
 			  controller: 'orderController',
 			  controllerAs: 'order'
 			})
+			.when('/registerdriver', {
+			  templateUrl: 'angular/views/pages/registerdriver.html',
+			  controller: 'driverController',
+			  controllerAs: 'driver'
+			})
+			.when('/learning', {
+			  templateUrl: 'angular/views/pages/learning.html',
+			  controller: 'learnController',
+			  controllerAs: 'learn'
+			})
 			// .when('/admin', {
 			//   templateUrl: 'angular/views/pages/users/all.html',
 			//   controller: 'adminController',

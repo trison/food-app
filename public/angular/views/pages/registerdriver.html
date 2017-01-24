@@ -1,0 +1,48 @@
+<div class="register-page">
+<div class="page-header">
+	<h1>Driver Registration</h1>
+	All fields required.
+</div>
+
+<div class="row show-hide-message" ng-show="driver.message">
+	<div class="col-sm-6 col-sm-offset-2">
+		<div class="alert alert-info">
+			{{ driver.message }}
+		</div>
+	</div>
+</div>
+
+<div class="row show-hide-message" ng-show="driver.error">
+	<div class="col-sm-6 col-sm-offset-2">
+		<div class="alert alert-info">
+			{{ driver.error }}
+		</div>
+	</div>
+</div>
+
+<form class="form-horizontal jumbotron" ng-submit="driver.saveDriver()">
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="driver.driverData.name">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Phone Number</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="driver.driverData.phone_number">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-6">
+			<button type="submit" class="btn btn-success btn-lg btn-block">Register</button>
+		</div>
+	</div>
+
+</form>
+
+
+</div>

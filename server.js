@@ -32,8 +32,8 @@ var storage = multer.diskStorage({
             cb(null, './public/img/menus/')
         },
         filename: function (req, file, cb) {
-            var date = new Date();
-            var month = date.getMonth();
+          var date = new Date();
+          var month = date.getMonth();
 	        var day = date.getDay();
 	        var year = date.getFullYear();
 
@@ -41,7 +41,7 @@ var storage = multer.diskStorage({
 	        var name = file.originalname.split('.')[0];
 	        var ext = file.originalname.split('.')[file.originalname.split('.').length -1];
 
-            cb(null, name + '-' + timeStamp + '.' + ext)
+          cb(null, name + '-' + timeStamp + '.' + ext)
         }
     });
 

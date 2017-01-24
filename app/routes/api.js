@@ -251,6 +251,27 @@ module.exports = function(app, express) {
       });
     });
 
+    apiRouter.post('/drivers/', function(req, res) {
+    //create new instance of User model
+    var driver = new Driver();
+
+    //set users info (from request)
+    driver.name = req.body.name;
+    driver.phone_number = req.body.phone_number;
+
+    //save user and check for errors
+    driver.save(function(err) {
+      if(err) {
+        //duplicate entry
+        if(err.code == 11000)
+          return res.json({ success: false, message: 'A driver with that name already exists. '});
+        else
+          return res.send(err);
+      }
+      res.json({ message: 'Thank for for registering '+req.body.name+'!' });
+    });
+  })
+
     apiRouter.route('/drivers/:_id')
     .get(function(req, res) {
       Driver.findById(req.params._id, function(err, driver) {

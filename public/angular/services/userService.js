@@ -78,5 +78,16 @@ angular.module('userService', [])
 			return $http.delete('/api/orders/'+orderId);
 		};
 
+		// ========== DRIVERS ===================
+		userFactory.createDriver = function(driverData){
+			return $http.post('/api/drivers', driverData);
+		};
+		userFactory.getDrivers = function(){
+			return $http.get('/api/drivers/');
+		};
+		userFactory.deleteDriver = function(driverId){
+			return $http.delete('/api/drivers/'+driverId);
+		};
+
 		return userFactory;
 	});

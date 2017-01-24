@@ -561,6 +561,31 @@ angular.module('foodApp', [
 			});
 		};
 	})
+	// ********************************************
+	// DRIVER CONTROLLER
+	.controller('driverController', function(User, $window){
+		var vm = this;
+		vm.message = '';
+		vm.error = '';
+		//vm.type = create;
+
+		//create driver
+		vm.saveDriver = function(){
+			vm.processing = true;
+			vm.message = '';
+			vm.error = '';
+
+			User.createDriver(vm.driverData)
+				.success(function(data){
+					vm.processing = false;
+					vm.driverData = {};
+					vm.message = data.message;
+					vm.processing = false;
+					//vm.error = "Password entries do not match!";
+				});
+			$window.scrollTo(0,0);
+		};		
+	})
 
 	// ********************************************
 	// HOME CONTROLLER
@@ -568,7 +593,12 @@ angular.module('foodApp', [
 		var vm = this;
 		vm.message = 'HOME PAGE!!';
 	})
-
+	// ********************************************
+	// LEARNING CONTROLLER
+	.controller('learnController', function(){
+		var vm = this;
+		vm.message = 'LEARN PAGE!!';
+	})
 	// ********************************************
 	// ABOUT CONTROLLER
 	.controller('aboutController', function(){
